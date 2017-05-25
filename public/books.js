@@ -122,33 +122,6 @@ function getBooks() {
         target.appendChild(product);
 
         /*document.getElementById("dwnLoadBtn").addEventListener("click",downLoad);*/
-        function downLoad(id) {
-            var url = "https://it-ebooks-api.info/v1/book/" + id;
-            console.log(url);
-
-            $.ajax({
-                type: "GET",
-                url: url,
-                data: "",
-                success: function (data) {
-                    console.log(data);
-
-                    var bookObj = data;
-                    dLoadUrl = bookObj.Download;
-                    console.log(dLoadUrl);
-
-                },
-                error: function (a, b, c) {
-                    console.log(a);
-                    console.log(b);
-                    console.log(c);
-                }
-
-            });
-
-
-
-        }
     }
 
 }

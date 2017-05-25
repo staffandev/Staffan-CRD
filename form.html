@@ -16,6 +16,11 @@
     </form>
 
     <button id="getInfo">Hämta från DB</button>
+    <form method="post" enctype="multipart/form-data" action="/upload">
+    <h3>Ladda upp fil</h3>
+    <input type="file" name="file">
+    <input type="submit" value="Submit">
+</form>
     <div id="box">
 
     </div>
@@ -50,7 +55,7 @@
     <script>
     var array = [];
     $("#getInfo").click(function(){
-      $.ajax({url: "http://localhost:4600/data", success: function(result){
+      $.ajax({url: "https://staffan-portfolio.herokuapp.com/data", success: function(result){
           var object = result;
           for (var i = 0; i < object.length; i++){
             console.log(object[i].imageurl);
