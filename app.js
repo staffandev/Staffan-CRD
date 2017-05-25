@@ -5,7 +5,7 @@ var app = express();
 var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
-mongoose.connect('mongodb://localhost:27017/staffanDatabase');
+mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error : '));
 db.once('open', function(){console.log('Connection to DB good!');});
