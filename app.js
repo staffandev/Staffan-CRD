@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get("https://boiling-garden-31614.herokuapp.com", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
@@ -95,8 +95,12 @@ app.post("/", (req, res) => {
     res.redirect("/form.html");
   });
 });
-app.listen(4600, () => {
+var port = process.env.PORT || 8000;
+server.listen(port, function() {
+    console.log("App is running on port " + port);
+});
+/*app.listen(4600, () => {
   console.log("Server is upp and running on port: 4600");
-})
+})*/
 
 //test
