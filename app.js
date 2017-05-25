@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get("/", (req, res) => {
+app.get("https://boiling-garden-31614.herokuapp.com", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
