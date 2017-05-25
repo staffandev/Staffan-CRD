@@ -5,6 +5,8 @@ var app = express();
 var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
+var path = require('path'),
+    fs = require('fs');
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error : '));
@@ -12,7 +14,7 @@ db.once('open', function(){console.log('Connection to DB good!');});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
 app.use(express.static(__dirname + ''));
 
 app.use(function(req, res, next) {
@@ -95,6 +97,29 @@ app.post("/", (req, res) => {
     res.redirect("/form.html");
   });
 });
+
+var path = require('path'),
+    fs = require('fs');
+
+app.post('/upload', function (req, res) {
+    var tempPath = req.files.file.path,
+        targetPath = path.resolve('./uploads/image.png');
+    if (path.extname(req.files.file.name).toLowerCase() === '.png') {
+        fs.rename(tempPath, targetPath, function(err) {
+            if (err) throw err;
+            console.log("Upload completed!");
+        });
+    } else {
+        fs.unlink(tempPath, function () {
+            if (err) throw err;
+            console.error("Only .png files are allowed!");
+        });
+    }
+});
+
+app.get('/image.png', function (req, res) {
+    res.sendfile(path.resolve('./uploads/image.png'));
+}); 
 
 /*app.listen(4600, () => {
   console.log("Server is upp and running on port: 4600");
