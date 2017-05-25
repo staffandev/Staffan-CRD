@@ -39,7 +39,7 @@ var dLoadUrl = "";
 
 
 function searchITbooksAPI() {
-    var url = "http://localhost:4600/data";
+    var url = "https://staffan-portfolio.herokuapp.com/data";
     console.log(url);
     $.ajax({
         type: "GET",
