@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+    <script src="https://use.fontawesome.com/fdad9e2f8b.js"></script>
+    <link rel="stylesheet" href="/public/styles.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+  <div class="container login">
+    <div class="row">
+        <div class="col-md-offset-8 col-md-3">
+            <form class="form-login" method="POST" action="/login">
+            <h4>Welcome back.</h4>
+            <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" name="username" />
+            </br>
+            <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="password" name="password" />
+            </br>
+            <div class="wrapper">
+            <span class="group-btn">
+                <input id="apa" type="submit" class="btn btn-primary btn-md"/>
+            </span>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+
+<script>
+var array = [];
+$("#apa").click(function(){
+  $.ajax({url: "http://localhost:4600/login", success: function(result){
+      var object = result;
+      console.log(object);
+  }});
+});
+
+function asd(event){
+  console.log(event.data.id);
+}
+</script>
+<script src="/public/books.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
