@@ -5,8 +5,8 @@ var app = express();
 var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
-var path = require('path'),
-    fs = require('fs');
+/*var path = require('path'),
+    fs = require('fs');*/
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error : '));
@@ -14,7 +14,7 @@ db.once('open', function(){console.log('Connection to DB good!');});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
+/*app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));*/
 app.use(express.static(__dirname + ''));
 
 app.use(function(req, res, next) {
@@ -101,7 +101,7 @@ app.post("/", (req, res) => {
 var path = require('path'),
     fs = require('fs');
 
-app.post('/upload', function (req, res) {
+/*app.post('/upload', function (req, res) {
     var tempPath = req.files.file.path,
         targetPath = path.resolve('./uploads/image.png');
     if (path.extname(req.files.file.name).toLowerCase() === '.png') {
@@ -115,7 +115,7 @@ app.post('/upload', function (req, res) {
             console.error("Only .png files are allowed!");
         });
     }
-});
+});*/
 
 app.get('/image.png', function (req, res) {
     res.sendfile(path.resolve('./uploads/image.png'));
