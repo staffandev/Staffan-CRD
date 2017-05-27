@@ -4,8 +4,19 @@
 
 }
 
+.card{
+        height: 250px;
+}
+
+.card .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 .card-panel {
     width: 270px;
+    min-height: 320px;
     }
     @import url(http://fonts.googleapis.com/css?family=Roboto:400);
     body {
