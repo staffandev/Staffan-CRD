@@ -1,0 +1,258 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+@font-face {
+    font-family: 'f37_bellaregular';
+    src: url('../fonts/f37bella-webfont.woff2') format('woff2'),
+         url('../fonts/f37bella-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#bella{
+   font-family: 'f37_bellaregular' !important;
+}
+
+.carousel carousel-slider {
+height: 337px;
+
+}
+
+.orange{
+  color: rgba(251, 193, 79, 0.9) !important;
+}
+
+.indicator-item.active {
+    background-color: #10111a;
+}
+
+#h-margin{
+  display: inline-block;
+  margin-top: 3%;
+  margin-left: 45%;
+}
+.headings{
+     min-height: 480px;
+    line-height: 0;
+    height: auto;
+}
+#h2-margin{
+  margin-top: -2%;
+   margin-left: 23%;
+}
+
+ #logo-container img{
+      max-height: 47px;
+    margin-top: 7px;
+ }
+
+.brown-text {
+    color: #10111a !important;
+}
+
+.btn, .btn-large {
+    background-color: #475061 !important;
+}
+
+.button-collapse {
+    color: #475061 !important;
+}
+
+.teal {
+    background-color: #6e7484 !important;
+}
+
+.brown-text.text-lighten-3 {
+    color: #cecccb !important;
+}
+
+ #Logo {
+  /*width: 150%;*/
+  height: 100%;
+  position: absolute;
+      width: 110%;
+    right: 106px;
+    bottom: -300px;
+ /* top: 76%; right: 0; bottom: 0; left: -38%;*/
+/*  margin: auto;*/
+left: - 150px;
+  display:block; 
+  fill: #cccccc;
+  stroke: #10111a;
+  stroke-miterlimit: 5;
+}
+
+.Animate-Draw {
+  fill-opacity: 0;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-iteration: 1;
+  
+  animation-name: DrawLine, FadeStroke, FillIn;
+  animation-duration: 6s, 1s, 1s;
+  animation-delay: 0s, 3.5s, 3.5s;
+}
+
+#Draw-Mark {
+  stroke-dashArray: 1100;
+  stroke-dashoffset: 1100; 
+}
+#Draw-Mark2 {
+  stroke-dashArray: 1100;
+  stroke-dashoffset: 1100; 
+}
+
+#Draw-Cirlce {
+  stroke-dashArray: 1100;
+  stroke-dashoffset: 1100; 
+}
+
+@keyframes DrawLine {
+  to { stroke-dashOffset: 0; }
+}
+
+@keyframes FadeStroke {
+  to { stroke-opacity: 1; }
+}
+
+@keyframes FillIn {
+  from { fill-opacity: 0; }
+  to { fill-opacity: 1; }
+}
+
+ h1,h2,h3,h4,h5,h6{
+ font-family: 'Work Sans', sans-serif;
+ }
+
+ .f-nav{  /* To fix main menu container */
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 0.0625em 0.625em rgba(39,43,55,0.25);
+box-shadow: 0 0.0625em 0.625em rgba(39,43,55,0.25);
+/*-webkit-transform: translate(0, -2em);
+-ms-transform: translate(0, -2em);
+transform: translate(0, -2em);*/
+-webkit-transition: -webkit-transform .2s ease-in,left 0s .2s;
+transition: transform .2s ease-in,left 0s .2s;
+}
+
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #444;
+}
+
+.parallax-container {
+    min-height: 480px;
+    line-height: 0;
+    height: auto;
+    color: rgba(221, 230, 154, 0.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 2000px) and (min-width: 601px) {
+  #logo{
+      width: 120%;
+    right: 106px;
+    bottom: -300px;
+}
+
+}
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+   top: -130px;
+    max-width: 700px;
+    max-height: 367px;
+    left: 65px;
+  }
+
+#h2-margin {
+    margin-top: 450px;
+}
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+    
+  }
+#Logo {
+    position: absolute;
+    right: 0.px;
+    bottom: 0;
+    left: 20px;
+}
+}
+
+@media only screen and (max-width : 320px){
+    #Logo {
+          max-width: 326px;
+    position: absolute;
+    right: 0.px;
+    bottom: 0;
+    left: 20px;
+}
+#h-margin {
+    margin-top: 280px;
+    margin-left: 100px;
+    text-align: -webkit-right;
+}
+#h2-margin{
+  display: none;
+}
+}
+
+@media only screen and (max-width : 375px) and (min-width: 361px){
+    #Logo {
+          max-width: 377px;
+}
+
+@media only screen and (max-width: 360px) and (min-width: 321px){
+      #Logo {
+          max-width: 357px;
+}
+
+}
+#h-margin {
+    margin-top: 280px;
+    margin-left: 100px;
+    text-align: -webkit-right;
+}
+#h2-margin{
+  display: none;
+}
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
