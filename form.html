@@ -101,13 +101,11 @@
     (() => {
       document.getElementById('file-input').onchange = initUpload;
     })();
-  </script>
 
-  <script>
     var array = [];
     $("#getInfo").click(function () {
-      $.ajax({        
-url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) {
+      $.ajax({
+        url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) {
           var object = result;
           for (var i = 0; i < object.length; i++) {
             console.log(object[i].imageurl);
@@ -125,10 +123,10 @@ url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) 
     function asd(event) {
       console.log(event.data.id);
     }
-$("#avatar-url").change(function () {
-      $("#image".val = $("#avatar-url").val;
+
+    $('#avatar-url').change(function () {
+      $('#image').val($(this).val());
     });
- 
   </script>
 
 </body>
