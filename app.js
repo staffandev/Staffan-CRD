@@ -53,7 +53,7 @@ app.get("/form", (req, res) => {
 
 
 app.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3();
+  const s3 = new aws.S3({endpoint: 's3-eu-central-1.amazonaws.com', signatureVersion: 'v4', region: 'eu-central-1'});
 
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
