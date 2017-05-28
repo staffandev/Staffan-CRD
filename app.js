@@ -7,7 +7,7 @@ var Login = require("./loginSchema");
 var token = false;
 /*var path = require('path'),
 var fs = require("fs-extra");*/
-/*const aws = require('aws-sdk');*/
+const aws = require('aws-sdk');
 
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
@@ -35,7 +35,7 @@ app.use(express.static('./public'));*/
 /*app.engine('html', require('ejs').renderFile);*/
 /*app.listen(process.env.PORT || 3000);*/
 
-/*const S3_BUCKET = process.env.S3_BUCKET;*/
+const S3_BUCKET = process.env.S3_BUCKET;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -51,9 +51,8 @@ app.get("/form", (req, res) => {
 
 });
 
-/*app.get('/account', (req, res) => res.render('account.html'));*/
 
-/*app.get('/sign-s3', (req, res) => {
+app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
@@ -81,7 +80,7 @@ app.get("/form", (req, res) => {
 
 app.post('/save-details', (req, res) => {
   // TODO: Read POSTed form data and do something useful
-});*/
+});
 
 app.get("/register", (req, res) => {
   res.sendFile(__dirname + "/register.html");
