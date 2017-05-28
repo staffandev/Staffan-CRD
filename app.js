@@ -6,7 +6,7 @@ var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
 var path = require('path'),
-var fs = require("fs");
+var fs = require("fs-extra");
 
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
