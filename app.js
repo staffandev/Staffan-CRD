@@ -59,11 +59,14 @@ app.get('/sign-s3', (req, res) => {
   const fileType = req.query['file-type'];
   const s3Params = {
     Bucket: S3_BUCKET,
+      endpoint: 's3-eu-central-1.amazonaws.com',
+    signatureVersion: 'v4',
+    region: 'eu-central-1',
     Key: fileName,
     Expires: 60,
     ContentType: fileType,
     ACL: 'public-read'
-    
+  
   };
   console.log(s3);
   console.log(s3Params);
