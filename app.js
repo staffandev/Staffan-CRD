@@ -53,7 +53,7 @@ app.get("/form", (req, res) => {
 
 /*app.get('/account', (req, res) => res.render('account.html'));*/
 
-app.get('/sign-s3', (req, res) => {
+/*app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
@@ -81,7 +81,7 @@ app.get('/sign-s3', (req, res) => {
 
 app.post('/save-details', (req, res) => {
   // TODO: Read POSTed form data and do something useful
-});
+});*/
 
 app.get("/register", (req, res) => {
   res.sendFile(__dirname + "/register.html");

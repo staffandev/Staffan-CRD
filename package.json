@@ -9,7 +9,6 @@
     "mongodb": "^2.2.26",
     "mongoose": "^4.10.1",
       "aws-sdk": "2.x",
-    "ejs": "2.x"
   },
   "devDependencies": {},
   "scripts": {
