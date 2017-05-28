@@ -100,9 +100,6 @@
     */
     (() => {
       document.getElementById('file-input').onchange = initUpload;
-         $("#avatar-url").change(function () {
-      $("#image".val = $("#avatar-url").val;
-    });
     })();
   </script>
 
@@ -128,7 +125,9 @@ url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) 
     function asd(event) {
       console.log(event.data.id);
     }
-
+$("#avatar-url").change(function () {
+      $("#image".val = $("#avatar-url").val;
+    });
  
   </script>
 
