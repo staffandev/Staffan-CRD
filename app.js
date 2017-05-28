@@ -5,8 +5,9 @@ var app = express();
 var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
-var path = require('path'),
-var fs = require("fs-extra");
+/*var path = require('path'),
+var fs = require("fs-extra");*/
+const aws = require('aws-sdk');
 
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
@@ -16,7 +17,7 @@ db.once('open', function(){console.log('Connection to DB good!');});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
+/*app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));*/
 app.use(express.static(__dirname + ''));
 
 app.use(function(req, res, next) {
@@ -28,6 +29,13 @@ app.use(function(req, res, next) {
     res.header('Pragma', 'no-cache');
     next();
 });
+
+app.set('views', './views');
+app.use(express.static('./public'));
+app.engine('html', require('ejs').renderFile);
+app.listen(process.env.PORT || 3000);
+
+const S3_BUCKET = process.env.S3_BUCKET;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -41,6 +49,36 @@ app.get("/form", (req, res) => {
     res.sendFile(__dirname + "/form.html");
   }
 
+});
+
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+
+app.post('/save-details', (req, res) => {
+  // TODO: Read POSTed form data and do something useful
 });
 
 app.get("/register", (req, res) => {
@@ -104,7 +142,7 @@ app.post("/", (req, res) => {
     fs = require('fs');
 */
 
-app.post('/upload', function (req, res) {
+/*app.post('/upload', function (req, res) {
     var tempPath = req.files.file.path,
         targetPath = path.resolve('./uploads/image.png');
     if (path.extname(req.files.file.name).toLowerCase() === '.png') {
@@ -118,11 +156,11 @@ app.post('/upload', function (req, res) {
             console.error("Only .png files are allowed!");
         });
     }
-});
+});*/
 
-app.get('/image.png', function (req, res) {
+/*app.get('/image.png', function (req, res) {
     res.sendfile(path.resolve('./uploads/image.png'));
-}); 
+}); */
 
 /*app.listen(4600, () => {
   console.log("Server is upp and running on port: 4600");
