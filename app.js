@@ -7,7 +7,7 @@ var Login = require("./loginSchema");
 var token = false;
 /*var path = require('path'),
 var fs = require("fs-extra");*/
-const aws = require('aws-sdk');
+/*const aws = require('aws-sdk');*/
 
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
@@ -30,8 +30,8 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.set('views', './views');
-app.use(express.static('./public'));
+/*app.set('views', './views');
+app.use(express.static('./public'));*/
 /*app.engine('html', require('ejs').renderFile);*/
 app.listen(process.env.PORT || 3000);
 
