@@ -33,9 +33,9 @@ app.use(function(req, res, next) {
 /*app.set('views', './views');
 app.use(express.static('./public'));*/
 /*app.engine('html', require('ejs').renderFile);*/
-app.listen(process.env.PORT || 3000);
+/*app.listen(process.env.PORT || 3000);*/
 
-const S3_BUCKET = process.env.S3_BUCKET;
+/*const S3_BUCKET = process.env.S3_BUCKET;*/
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
