@@ -21,7 +21,7 @@
 
   <hr>
 
-  <h2>Ladda upp en bbild</h2>
+  <h2>Ladda upp en bild</h2>
 
   <input type="file" id="file-input">
   <p id="status">Please select a file</p>
@@ -104,6 +104,7 @@
       $.ajax({
         url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) {
           var object = result;
+            console.log(object);
           for (var i = 0; i < object.length; i++) {
             console.log(object[i].imageurl);
             $("#box").append("<h3>" + object[i].title + "</h4>");
@@ -111,8 +112,9 @@
             $("#box").append("<h4>" + object[i].projekt + "</h4>");
             $("#box").append("<button class='delete'>DELETE ME PLEASE</button>");
             $("#box").append("<hr />");
+             $(".delete").on("click", { id: object[i]._id }, asd);
           }
-          $(".delete").on("click", { id: object[i]._id }, asd);
+         
         }
       });
     });
