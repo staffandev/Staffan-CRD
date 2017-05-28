@@ -19,11 +19,6 @@
 
   <button id="getInfo">Hämta från DB</button>
 
-  <!--<input type="file" id="file-input">
-<p id="status">Please select a file</p>
-<img id="preview" src="/images/default.png">-->
-
-
   <hr>
 
   <h2>Ladda upp en bbild</h2>
@@ -32,7 +27,6 @@
   <p id="status">Please select a file</p>
   <img style="border:1px solid gray;width:300px;" id="preview" src="/images/default.png" crossorigin="anonymous">
 
-  <h2>Your information</h2>
 
   <form method="POST" action="/save-details">
     <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
@@ -100,6 +94,9 @@
     */
     (() => {
       document.getElementById('file-input').onchange = initUpload;
+      $('#avatar-url').change(function () {
+        $('#image').val($(this).val());
+      });
     })();
 
     var array = [];
@@ -123,10 +120,6 @@
     function asd(event) {
       console.log(event.data.id);
     }
-
-    $('#avatar-url').change(function () {
-      $('#image').val($(this).val());
-    });
   </script>
 
 </body>

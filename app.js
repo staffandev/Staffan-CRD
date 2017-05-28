@@ -5,10 +5,7 @@ var app = express();
 var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
-/*var path = require('path'),
-var fs = require("fs-extra");*/
 const aws = require('aws-sdk');
-
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
@@ -17,7 +14,6 @@ db.once('open', function(){console.log('Connection to DB good!');});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-/*app.use(express.bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));*/
 app.use(express.static(__dirname + ''));
 
 app.use(function(req, res, next) {
@@ -30,10 +26,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-/*app.set('views', './views');
-app.use(express.static('./public'));*/
-/*app.engine('html', require('ejs').renderFile);*/
-/*app.listen(process.env.PORT || 3000);*/
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
@@ -68,8 +60,6 @@ app.get('/sign-s3', (req, res) => {
     ACL: 'public-read'
   
   };
-  console.log(s3);
-  console.log(s3Params);
 
   s3.getSignedUrl('putObject', s3Params, (err, data) => {
     if(err){
@@ -147,33 +137,7 @@ app.post("/", (req, res) => {
   });
 });
 
-/*var path = require('path'),
-    fs = require('fs');
-*/
 
-/*app.post('/upload', function (req, res) {
-    var tempPath = req.files.file.path,
-        targetPath = path.resolve('./uploads/image.png');
-    if (path.extname(req.files.file.name).toLowerCase() === '.png') {
-        fs.rename(tempPath, targetPath, function(err) {
-            if (err) throw err;
-            console.log("Upload completed!");
-        });
-    } else {
-        fs.unlink(tempPath, function () {
-            if (err) throw err;
-            console.error("Only .png files are allowed!");
-        });
-    }
-});*/
-
-/*app.get('/image.png', function (req, res) {
-    res.sendfile(path.resolve('./uploads/image.png'));
-}); */
-
-/*app.listen(4600, () => {
-  console.log("Server is upp and running on port: 4600");
-})*/
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
