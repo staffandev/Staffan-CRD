@@ -1,63 +1,64 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
     searchProjects();
- 
-/*    //Remove encaspulated Tags
 
-    $.fn.ignore = function (sel) {
-        return this.clone().find(sel || ">*").remove().end();
-    };
+    /*    //Remove encaspulated Tags
 
-    $(".clk > a").click(function (event) {
+        $.fn.ignore = function (sel) {
+            return this.clone().find(sel || ">*").remove().end();
+        };
 
-        var selectedB = $(this).ignore("i").text();
-        searchITbooksAPI(selectedB);
-    });
+        $(".clk > a").click(function (event) {
 
-});*/
+            var selectedB = $(this).ignore("i").text();
+            searchITbooksAPI(selectedB);
+        });
 
-var projects = [];
+    });*/
 
-var id = 0;
-var title = "";
-var subTitle = "";
-var desc = "";
-var imgUrl = "";
-var dLoadUrl = "";
+    var projects = [];
+
+    var id = 0;
+    var title = "";
+    var subTitle = "";
+    var desc = "";
+    var imgUrl = "";
+    var dLoadUrl = "";
 
 
-function  searchProjects() {
-    var url = "https://staffan-portfolio.herokuapp.com/data";
-    console.log(url);
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: "",
-        success: function (data) {
-            console.log(data);
-            projects = data;
-            getProjects();
-        },
-        error: function (a, b, c) {
-            console.log(a);
-            console.log(b);
-            console.log(c);
-        }
-    });
-}
+    function searchProjects() {
+        var url = "https://staffan-portfolio.herokuapp.com/data";
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: "",
+            success: function(data) {
+                console.log(data);
+                projects = data;
+                getProjects();
+            },
+            error: function(a, b, c) {
+                console.log(a);
+                console.log(b);
+                console.log(c);
+            }
+        });
+    }
 
-function getProjects() {
-    document.getElementById("books").innerHTML = "";
-   projects.forEach(function (arrayItem) {
-        console.log(arrayItem);
-        id = arrayItem._id;
-        title = arrayItem.title;
-        subTitle = arrayItem.subtitle;
-        desc = arrayItem.desc;
-        imgUrl = arrayItem.imageurl;
-        showProject(id, title, subTitle, desc, imgUrl);
-    });
+    function getProjects() {
+        document.getElementById("books").innerHTML = "";
+        projects.forEach(function(arrayItem) {
+            console.log(arrayItem);
+            id = arrayItem._id;
+            title = arrayItem.title;
+            subTitle = arrayItem.subtitle;
+            desc = arrayItem.desc;
+            imgUrl = arrayItem.imageurl;
+            showProject(id, title, subTitle, desc, imgUrl);
+        });
 
+    }
 
     function showProject(id, title, subTitle, desc, imgUrl) {
 
@@ -93,5 +94,4 @@ function getProjects() {
 
         /*document.getElementById("dwnLoadBtn").addEventListener("click",downLoad);*/
     }
-
-}
+});
