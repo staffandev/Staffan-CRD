@@ -30,41 +30,35 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
-app.post('/contact', function(req, res) {
-    var mailOpts, smtpTrans;
-    //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
-    smtpTrans = nodemailer.createTransport('SMTP', {
-        service: 'Gmail',
-        auth: {
-            user: "staffan.ericson@ninetech.com",
-            pass: "Dsign2006"
-        }
-    });
-    //Mail options
-    mailOpts = {
-        from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
-        to: 'staffan.ericson@ninetech.com',
-        subject: 'Website contact form',
-        text: req.body.message
-    };
-    smtpTrans.sendMail(mailOpts, function(error, response) {
-        //Email not sent
-        if (error) {
-
-        }
-        //Yay!! Email sent
-        else {
-            res.redirect("/index.html");
-        }
-    });
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: "staffanericson2@gmail.com",
+        pass: "Dsign2006"
+    }
 });
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/contact", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+app.get('/send', function(req, res) {
+    var mailOptions = {
+        to: req.query.to,
+        subject: req.query.subject,
+        text: req.query.text
+    }
+    console.log(mailOptions);
+    smtpTransport.sendMail(mailOptions, function(error, response) {
+        if (error) {
+            console.log(error);
+            res.end("error");
+        } else {
+            console.log("Message sent: " + response.message);
+            res.end("sent");
+        }
+    });
 });
 
 app.get("/form", (req, res) => {

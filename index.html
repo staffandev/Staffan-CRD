@@ -177,7 +177,7 @@
                         <h4>Kontakta mig</h4>
                         <p class="left-align light">
                             <div class="row">
-                                <form class="col s12" action="/contact" method="post">
+                                <form class="col s12">
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">account_circle</i>
@@ -202,16 +202,17 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                                            <textarea id="icon_prefix2" id="content" class="materialize-textarea"></textarea>
                                             <label for="icon_prefix2">Meddelande</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <button class="btn waves-effect waves-light" type="submit" name="action">Skicka
+                                            <button class="btn waves-effect waves-light" id="send-email" type="submit" name="action">Skicka
               <i class="material-icons right">send</i>
                </button>
                                         </div>
+                                        <div id="message"></div>
                                     </div>
                                 </form>
                             </div>
@@ -279,6 +280,26 @@
     <script src="js/portfolio.js"></script>
     <script src="js/animation.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            var from, to, subject, text;
+            $("#send-email").click(function() {
+                to = "staffanericson@gmail.com";
+                subject = $("#subject").val();
+                text = $("#content").val();
+                $("#message").text("Sending E-mail...Please wait");
+                $.get("https://staffan-portfolio.herokuapp.com//send", {
+                    to: to,
+                    subject: subject,
+                    text: text
+                }, function(data) {
+                    if (data == "sent") {
+                        $("#message").empty().html("Email is been sent at " + to + " . Please check inbox!");
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         var x = 0;
 
