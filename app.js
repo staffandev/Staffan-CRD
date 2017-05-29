@@ -6,7 +6,7 @@ var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
 const aws = require('aws-sdk');
-nodemailer = require("nodemailer");
+var nodemailer = require("nodemailer");
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
@@ -30,32 +30,35 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
-app.post('/formProcess', function(req, res) {
-    var data = req.body();
-
-    var smtpTransport = nodemailer.createTransport("SMTP", {
-        service: "Gmail",
+app.post('/contact', function(req, res) {
+    var mailOpts, smtpTrans;
+    //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
+    smtpTrans = nodemailer.createTransport('SMTP', {
+        service: 'Gmail',
         auth: {
             user: "staffanericson2@gmail.com",
-            pass: "dsign2006"
+            pass: "application-specific-password"
         }
     });
-
-    smtpTransport.sendMail({ //email options
-        from: "Sender Name <email@gmail.com>",
-        to: "Receiver Name <receiver@email.com>", // receiver
-        subject: "Emailing with nodemailer", // subject
-        html: "here your data goes" // body
-    }, function(error, response) { //callback
+    //Mail options
+    mailOpts = {
+        from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
+        to: 'staffanericson2@gmail.com',
+        subject: 'Website contact form',
+        text: req.body.message
+    };
+    smtpTrans.sendMail(mailOpts, function(error, response) {
+        //Email not sent
         if (error) {
-            console.log(error);
-        } else {
-            console.log("Message sent: " + res.message);
+            res.render('contact', { title: 'Raging Flame Laboratory - Contact', msg: 'Error occured, message not sent.', err: true, page: 'contact' })
         }
-
-        smtpTransport.close();
+        //Yay!! Email sent
+        else {
+            res.render('contact', { title: 'Raging Flame Laboratory - Contact', msg: 'Message sent! Thank you.', err: false, page: 'contact' })
+        }
     });
 });
+
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
