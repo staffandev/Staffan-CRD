@@ -36,14 +36,14 @@ app.post('/contact', function(req, res) {
     smtpTrans = nodemailer.createTransport('SMTP', {
         service: 'Gmail',
         auth: {
-            user: "staffanericson2@gmail.com",
-            pass: "dsign2006"
+            user: "staffan.ericson@ninetech.com",
+            pass: "Dsign2006"
         }
     });
     //Mail options
     mailOpts = {
         from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab form data from the request body object
-        to: 'staffanericson2@gmail.com',
+        to: 'staffan.ericson@ninetech.com',
         subject: 'Website contact form',
         text: req.body.message
     };
