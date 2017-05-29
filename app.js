@@ -63,6 +63,10 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/contact", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
+
 app.get("/form", (req, res) => {
     if (token === false) {
         res.sendFile(__dirname + "/login.html");
