@@ -17,16 +17,25 @@
         font-family: 'f37_bellaregular' !important;
     }
     
+    .section {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
     .carousel carousel-slider {
         height: 337px;
     }
     
-    .orange {
-        color: rgba(251, 193, 79, 0.9) !important;
+    orange {
+        color: rgba(239, 195, 109, 0.9);
     }
     
-    .indicator-item.active {
-        background-color: #10111a;
+    .carousel .indicators .indicator-item.active {
+        background-color: #475061;
+    }
+    
+    .carousel .indicators .indicator-item {
+        background-color: rgb(218, 218, 218);
     }
     
     #h-margin {
