@@ -226,6 +226,13 @@
         #h2-margin {
             display: none;
         }
+        .carousel {
+            height: 1040px !important;
+        }
+        .styleaMig {
+            float: left;
+            margin-left: 10px;
+        }
     }
     
     @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
@@ -245,6 +252,17 @@
             text-align: right;
             max-width: 300px;
         }
+        .carousel {
+            height: 1040px !important;
+        }
+        .container .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .styleaMig {
+            float: left;
+            margin-left: 25px;
+        }
     }
     
     @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
@@ -263,6 +281,9 @@
             margin-left: -4px;
             text-align: right;
             max-width: 300px;
+        }
+        .carousel {
+            height: 1040px !important;
         }
     }
     
@@ -290,6 +311,10 @@
             margin-left: -45px;
             text-align: right;
             max-width: 300px;
+        }
+        .container .row {
+            margin-left: 0;
+            margin-right: 0;
         }
     }
     
