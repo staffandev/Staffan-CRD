@@ -6,14 +6,15 @@ var Data = require("./schema");
 var Login = require("./loginSchema");
 var token = false;
 const aws = require('aws-sdk');
+nodemailer = require("nodemailer");
 
 mongoose.connect('mongodb://staffandev:dsign2006@ds041586.mlab.com:41586/staffandev');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error : '));
-db.once('open', function(){console.log('Connection to DB good!');});
+db.once('open', function() { console.log('Connection to DB good!'); });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + ''));
 
 app.use(function(req, res, next) {
@@ -29,115 +30,141 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
+app.post('/formProcess', function(req, res) {
+    var data = req.body();
+
+    var smtpTransport = nodemailer.createTransport("SMTP", {
+        service: "Gmail",
+        auth: {
+            user: "staffanericson2@gmail.com",
+            pass: "dsign2006"
+        }
+    });
+
+    smtpTransport.sendMail({ //email options
+        from: "Sender Name <email@gmail.com>",
+        to: "Receiver Name <receiver@email.com>", // receiver
+        subject: "Emailing with nodemailer", // subject
+        html: "here your data goes" // body
+    }, function(error, response) { //callback
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Message sent: " + res.message);
+        }
+
+        smtpTransport.close();
+    });
+});
+
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/form", (req, res) => {
-  if (token === false){
-    res.sendFile(__dirname + "/login.html");
-  }
-  else {
-    res.sendFile(__dirname + "/form.html");
-  }
+    if (token === false) {
+        res.sendFile(__dirname + "/login.html");
+    } else {
+        res.sendFile(__dirname + "/form.html");
+    }
 
 });
 
 
 app.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3({
-    signatureVersion: 'v4',
-     region: 'eu-central-1'
-});
+    const s3 = new aws.S3({
+        signatureVersion: 'v4',
+        region: 'eu-central-1'
+    });
 
-  const fileName = req.query['file-name'];
-  const fileType = req.query['file-type'];
-  const s3Params = {
-    Bucket: S3_BUCKET,
-    Key: fileName,
-    Expires: 60,
-    ContentType: fileType,
-    ACL: 'public-read'
-  
-  };
+    const fileName = req.query['file-name'];
+    const fileType = req.query['file-type'];
+    const s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 60,
+        ContentType: fileType,
+        ACL: 'public-read'
 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
     };
-    res.write(JSON.stringify(returnData));
-    res.end();
-  });
+
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.end();
+        }
+        const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        };
+        res.write(JSON.stringify(returnData));
+        res.end();
+    });
 });
 
 app.post('/save-details', (req, res) => {
-  // TODO: Read POSTed form data and do something useful
-  alert("skickat");
+    // TODO: Read POSTed form data and do something useful
+    alert("skickat");
 });
 
 app.get("/register", (req, res) => {
-  res.sendFile(__dirname + "/register.html");
+    res.sendFile(__dirname + "/register.html");
 });
 
 app.post("/register", (req, res) => {
-  var info = {
-    username: req.body.username,
-    password: req.body.password
-  }
+    var info = {
+        username: req.body.username,
+        password: req.body.password
+    }
 
-  Login.create(info, (login) => {
-    res.redirect("/login.html");
-  });
+    Login.create(info, (login) => {
+        res.redirect("/login.html");
+    });
 });
 
 
 
 app.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/login.html");
+    res.sendFile(__dirname + "/login.html");
 });
 
 app.post('/login', (req, res) => {
-  Login.find({}, function(err, data){
-    if(data[0].username === req.body.username && data[0].password === req.body.password){
-      token = true;
-      res.redirect('/form');
-    } else{
-      res.redirect('/login');
-    }
-  });
+    Login.find({}, function(err, data) {
+        if (data[0].username === req.body.username && data[0].password === req.body.password) {
+            token = true;
+            res.redirect('/form');
+        } else {
+            res.redirect('/login');
+        }
+    });
 });
 
 app.get("/test", (req, res) => {
-  Login.find({}, function(err, data){
-    console.log(data[0].username);
-  });
+    Login.find({}, function(err, data) {
+        console.log(data[0].username);
+    });
 });
 
 app.get("/data", (req, res) => {
-  Data.find({}, function(err, data){
-    res.send(data);
-  });
+    Data.find({}, function(err, data) {
+        res.send(data);
+    });
 });
 
 app.post("/", (req, res) => {
-  var info = {
-    imageurl: req.body.image,
-    projekt: req.body.projekt,
-    title: req.body.title,
-    subtitle: req.body.subtitle,
-    desc: req.body.desc
-  }
-  Data.create(info, (data) => {
-    res.redirect("/form.html");
-  });
+    var info = {
+        imageurl: req.body.image,
+        projekt: req.body.projekt,
+        title: req.body.title,
+        subtitle: req.body.subtitle,
+        desc: req.body.desc
+    }
+    Data.create(info, (data) => {
+        res.redirect("/form.html");
+    });
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
