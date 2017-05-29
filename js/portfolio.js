@@ -1,18 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    //getValue();
-    //document.getElementById("select").addEventListener("change", getValue);
 
-    searchITbooksAPI("JavaScript")
-    // Initialize collapse button
-    $(".button-collapse").sideNav({
-
-        menuWidth: 300, // Default is 240
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-        draggable: true // Choose whether you can drag to open on touch screens);
-    });
-
-    //Remove encaspulated Tags
+    searchProjects();
+ 
+/*    //Remove encaspulated Tags
 
     $.fn.ignore = function (sel) {
         return this.clone().find(sel || ">*").remove().end();
@@ -24,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
         searchITbooksAPI(selectedB);
     });
 
-});
+});*/
 
-var books = [];
+var projects = [];
 
 var id = 0;
 var title = "";
@@ -36,7 +26,7 @@ var imgUrl = "";
 var dLoadUrl = "";
 
 
-function searchITbooksAPI() {
+function  searchProjects() {
     var url = "https://staffan-portfolio.herokuapp.com/data";
     console.log(url);
     $.ajax({
@@ -44,45 +34,32 @@ function searchITbooksAPI() {
         url: url,
         data: "",
         success: function (data) {
-            console.log(typeof data);
-
-            var booksObj = data;
             console.log(data);
-            books = data;
-            getBooks();
+            projects = data;
+            getProjects();
         },
         error: function (a, b, c) {
             console.log(a);
             console.log(b);
             console.log(c);
         }
-
     });
-
 }
 
-/*function getValue() {
-    var selected = document.getElementById("select");
-    var selectedBook = selected.options[selected.selectedIndex].value;
-    console.log(selectedBook);
-    searchITbooksAPI(selectedBook);
-}*/
-
-function getBooks() {
+function getProjects() {
     document.getElementById("books").innerHTML = "";
-    books.forEach(function (arrayItem) {
+   projects.forEach(function (arrayItem) {
         console.log(arrayItem);
         id = arrayItem._id;
         title = arrayItem.title;
         subTitle = arrayItem.subtitle;
         desc = arrayItem.desc;
         imgUrl = arrayItem.imageurl;
-        // console.log(imgUrl);
-        showBook(id, title, subTitle, desc, imgUrl);
-
+        showProject(id, title, subTitle, desc, imgUrl);
     });
 
-    function showBook(id, title, subTitle, desc, imgUrl) {
+
+    function showProject(id, title, subTitle, desc, imgUrl) {
 
         //Här visas resultatet
 
@@ -108,9 +85,6 @@ function getBooks() {
         htmlToAdd += "</div>";
         htmlToAdd += "</div>";
         htmlToAdd += "</div>";
-
-        /*       htmlToAdd += "<div>" + desc + "</div>";
-               htmlToAdd += "<div><input type='button' value='Ladda hem' id='"+ id + "'/>";*/
 
         // sista formatering
         product.innerHTML = htmlToAdd;
