@@ -37,7 +37,7 @@ app.post('/contact', function(req, res) {
         service: 'Gmail',
         auth: {
             user: "staffanericson2@gmail.com",
-            pass: "application-specific-password"
+            pass: "dsign2006"
         }
     });
     //Mail options
@@ -50,15 +50,14 @@ app.post('/contact', function(req, res) {
     smtpTrans.sendMail(mailOpts, function(error, response) {
         //Email not sent
         if (error) {
-            res.render('contact', { title: 'Raging Flame Laboratory - Contact', msg: 'Error occured, message not sent.', err: true, page: 'contact' })
+
         }
         //Yay!! Email sent
         else {
-            res.render('contact', { title: 'Raging Flame Laboratory - Contact', msg: 'Message sent! Thank you.', err: false, page: 'contact' })
+            res.redirect("/index.html");
         }
     });
 });
-
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
