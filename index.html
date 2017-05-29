@@ -202,7 +202,7 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" id="content" class="materialize-textarea"></textarea>
+                                            <textarea id="icon_prefix2" id="message" class="materialize-textarea"></textarea>
                                             <label for="icon_prefix2">Meddelande</label>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
               <i class="material-icons right">send</i>
                </button>
                                         </div>
-                                        <div id="message"></div>
+                                        <div id="message2"></div>
                                     </div>
                                 </form>
                             </div>
@@ -285,16 +285,16 @@
             var from, to, subject, text;
             $("#send-email").click(function() {
                 to = "staffanericson@gmail.com";
-                subject = $("#subject").val();
-                text = $("#content").val();
-                $("#message").text("Sending E-mail...Please wait");
+                subject = "node testmail";
+                text = $("#message").val();
+                $("#message2").text("Sending E-mail...Please wait");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
                     to: to,
                     subject: subject,
                     text: text
                 }, function(data) {
                     if (data == "sent") {
-                        $("#message").empty().html("Email is been sent at " + to + " . Please check inbox!");
+                        $("#message2").empty().html("Email is been sent at " + to + " . Please check inbox!");
                     }
                 });
             });
