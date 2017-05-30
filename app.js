@@ -67,8 +67,8 @@ app.get('/send', function(req, res) {
         auth: {
             user: user_name,
             refreshToken: refresh_token,
-            accessToken: access_token,
-            expires: 1494388182480
+            accessToken: access_token
+                /*expires: 1494388182480*/
         }
     }
     console.log(mailOptions);
