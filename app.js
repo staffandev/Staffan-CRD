@@ -30,36 +30,33 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
-const user_name = 'staffanericson2@gmail.com';
-const refresh_token = '1/QIbgeU6xZr_LoD8F8MXS1XdKLqd-a24WorIGr8TZGGw';
-const access_token = 'ya29.GltaBLiAzEcSr0C2VBTfZzPcjeGPwXhD0eezQBq-2RzgpJG4wx6ZTFJVrwndG2DVKREo5eeGnEZiTdqesGzNjAP2-Ws-uBCemycgBY0mB-6r7GFA15HUNXhHfenR';
-const client_id = '994918690662-tvcdmu2fk57d6pfu7g2ghlu9ekp07oal.apps.googleusercontent.com';
-const client_secret = 'JZG-vVF01e8DImUhdKaZMB8b';
-
-const email_to = 'staffanericson2@gmail.com';
-
-
-var smtpTransport = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        type: 'OAuth2',
-        clientId: client_id,
-        clientSecret: client_secret
-    }
-});
-
-smtpTransport.on('token', token => {
-    console.log('A new access token was generated');
-    console.log('User: %s', token.user);
-    console.log('Access Token: %s', token.accessToken);
-    console.log('Expires: %s', new Date(token.expires));
-});
-
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
 app.get('/send', function(req, res) {
+    const user_name = 'staffanericson2@gmail.com';
+    const refresh_token = '1/QIbgeU6xZr_LoD8F8MXS1XdKLqd-a24WorIGr8TZGGw';
+    const access_token = 'ya29.GltaBLiAzEcSr0C2VBTfZzPcjeGPwXhD0eezQBq-2RzgpJG4wx6ZTFJVrwndG2DVKREo5eeGnEZiTdqesGzNjAP2-Ws-uBCemycgBY0mB-6r7GFA15HUNXhHfenR';
+    const client_id = '994918690662-tvcdmu2fk57d6pfu7g2ghlu9ekp07oal.apps.googleusercontent.com';
+    const client_secret = 'JZG-vVF01e8DImUhdKaZMB8b';
+
+    const email_to = 'staffanericson2@gmail.com';
+    var smtpTransport = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            type: 'OAuth2',
+            clientId: client_id,
+            clientSecret: client_secret
+        }
+    });
+
+    smtpTransport.on('token', token => {
+        console.log('A new access token was generated');
+        console.log('User: %s', token.user);
+        console.log('Access Token: %s', token.accessToken);
+        console.log('Expires: %s', new Date(token.expires));
+    });
     var mailOptions = {
         to: req.query.to,
         subject: req.query.subject,
