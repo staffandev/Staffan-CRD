@@ -2,127 +2,126 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Staffa</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Staffa</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body bgcolor="pink">
-  <form method="POST" action="/">
-    <label>Title: </label><input type="text" name="title" />
-    <label>SubTitle: </label><input type="text" name="subtitle" />
-    <label>Imageurl: </label><input type="text" id="image" name="image" value="/images/default.png" />
-    <label>Projekt: </label><input type="text" name="projekt" />
-    <label>Descrition: </label><input type="text" name="desc" />
-    <input type="submit" />
-  </form>
+    <form method="POST" action="/">
+        <label>Title: </label><input type="text" name="title" />
+        <label>SubTitle: </label><input type="text" name="subtitle" />
+        <label>Imageurl: </label><input type="text" id="image" name="image" value="/images/default.png" />
+        <label>Projekt: </label><input type="text" name="projekt" />
+        <label>Descrition: </label><input type="text" name="desc" />
+        <input type="submit" />
+    </form>
 
-  <button id="getInfo">Hämta från DB</button>
+    <button id="getInfo">Hämta från DB</button>
 
-  <hr>
-
-  <h2>Ladda upp en bild</h2>
-
-  <input type="file" id="file-input">
-  <p id="status">Please select a file</p>
-  <img style="border:1px solid gray;width:300px;" id="preview" src="/images/default.png" crossorigin="anonymous">
-
-
-  <form method="POST" action="/save-details">
-    <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
     <hr>
-  </form>
 
-  <script>
-    /*
-      Function to carry out the actual PUT request to S3 using the signed request from the app.
-    */
-    function uploadFile(file, signedRequest, url) {
-      console.log(signedRequest);
-      const xhr = new XMLHttpRequest();
-      xhr.open('PUT', signedRequest);
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            document.getElementById('preview').src = url;
-            document.getElementById('avatar-url').value = url;
-          }
-          else {
-            alert('Could not upload file.');
-          }
+    <h2>Ladda upp en bild</h2>
+
+    <input type="file" id="file-input">
+    <p id="status">Please select a file</p>
+    <img style="border:1px solid gray;width:300px;" id="preview" src="/images/default.png" crossorigin="anonymous">
+
+
+    <form method="POST" action="/save-details">
+        <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
+        <hr>
+    </form>
+
+    <script>
+        /*
+              Function to carry out the actual PUT request to S3 using the signed request from the app.
+            */
+        function uploadFile(file, signedRequest, url) {
+            console.log(signedRequest);
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', signedRequest);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        document.getElementById('preview').src = url;
+                        document.getElementById('avatar-url').value = url;
+                    } else {
+                        alert('Could not upload file.');
+                    }
+                }
+            };
+            xhr.send(file);
         }
-      };
-      xhr.send(file);
-    }
-    /*
-      Function to get the temporary signed request from the app.
-      If request successful, continue to upload the file using this signed
-      request.
-    */
-    function getSignedRequest(file) {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);
-            console.log(response);
-            uploadFile(file, response.signedRequest, response.url);
-          }
-          else {
-            alert('Could not get signed URL.');
-          }
+        /*
+          Function to get the temporary signed request from the app.
+          If request successful, continue to upload the file using this signed
+          request.
+        */
+        function getSignedRequest(file) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        uploadFile(file, response.signedRequest, response.url);
+                    } else {
+                        alert('Could not get signed URL.');
+                    }
+                }
+            };
+            xhr.send();
+
         }
-      };
-      xhr.send();
-
-    }
-    /*
-     Function called when file input updated. If there is a file selected, then
-     start upload procedure by asking for a signed request from the app.
-    */
-    function initUpload() {
-      const files = document.getElementById('file-input').files;
-      const file = files[0];
-      if (file == null) {
-        return alert('No file selected.');
-      }
-      getSignedRequest(file);
-    }
-    /*
-     Bind listeners when the page loads.
-    */
-    (() => {
-      document.getElementById('file-input').onchange = initUpload;
-      $('#avatar-url').change(function () {
-        $('#image').val($(this).val());
-      });
-    })();
-
-    var array = [];
-    $("#getInfo").click(function () {
-      $.ajax({
-        url: "https://staffan-portfolio.herokuapp.com/data", success: function (result) {
-          var object = result;
-            console.log(object);
-          for (var i = 0; i < object.length; i++) {
-            console.log(object[i].imageurl);
-            $("#box").append("<h3>" + object[i].title + "</h4>");
-            $("#box").append("<h5>" + object[i].imageurl + "</h4>");
-            $("#box").append("<h4>" + object[i].projekt + "</h4>");
-            $("#box").append("<button class='delete'>DELETE ME PLEASE</button>");
-            $("#box").append("<hr />");
-           
-          }
-           $(".delete").on("click", { id: object[i]._id }, asd);
+        /*
+         Function called when file input updated. If there is a file selected, then
+         start upload procedure by asking for a signed request from the app.
+        */
+        function initUpload() {
+            const files = document.getElementById('file-input').files;
+            const file = files[0];
+            if (file == null) {
+                return alert('No file selected.');
+            }
+            getSignedRequest(file);
         }
-      });
-    });
+        /*
+         Bind listeners when the page loads.
+        */
+        (() => {
+            document.getElementById('file-input').onchange = initUpload;
+            $('#avatar-url').change(function() {
+                $('#image').val($(this).val());
+            });
+        })();
 
-    function asd(event) {
-      console.log(event.data.id);
-    }
-  </script>
+        var array = [];
+        $("#getInfo").click(function() {
+            $.ajax({
+                url: "https://staffan-portfolio.herokuapp.com/data",
+                success: function(result) {
+                    var object = result;
+                    console.log(object);
+                    for (var i = 0; i < object.length; i++) {
+                        console.log(object[i].imageurl);
+                        $("#box").append("<h3>" + object[i].title + "</h4>");
+                        $("#box").append("<h5>" + object[i].imageurl + "</h4>");
+                        $("#box").append("<h4>" + object[i].projekt + "</h4>");
+                        $("#box").append("<button class='delete'>DELETE ME PLEASE</button>");
+                        $("#box").append("<hr />");
+
+                    }
+                    /*  $(".delete").on("click", { id: object[i]._id }, asd);*/
+                }
+            });
+        });
+
+        function asd(event) {
+            console.log(event.data.id);
+        }
+    </script>
 
 </body>
 
