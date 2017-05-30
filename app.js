@@ -30,13 +30,29 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
+const user_name = 'staffanericson2@gmail.com';
+const refresh_token = '';
+const access_token = '';
+const client_id = '994918690662-tvcdmu2fk57d6pfu7g2ghlu9ekp07oal.apps.googleusercontent.com';
+const client_secret = 'JZG-vVF01e8DImUhdKaZMB8b';
+
+const email_to = 'staffanericson2@gmail.com';
+
+
 var smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
+    service: 'Gmail',
     auth: {
-        user: "staffanericson2@gmail.com",
-        pass: "Dsign2006"
+        type: 'OAuth2',
+        clientId: client_id,
+        clientSecret: client_secret
     }
+});
+
+transporter.on('token', token => {
+    console.log('A new access token was generated');
+    console.log('User: %s', token.user);
+    console.log('Access Token: %s', token.accessToken);
+    console.log('Expires: %s', new Date(token.expires));
 });
 
 app.get("/", (req, res) => {
@@ -50,15 +66,14 @@ app.get('/send', function(req, res) {
         text: req.query.text
     }
     console.log(mailOptions);
-    smtpTransport.sendMail(mailOptions, function(error, response) {
-        if (error) {
-            console.log(error);
-            res.end("error");
-        } else {
-            console.log("Message sent: " + response.message);
-            res.end("sent");
-        }
-    });
+});
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
 });
 
 app.get("/form", (req, res) => {
