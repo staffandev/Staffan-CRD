@@ -69,12 +69,12 @@ app.get('/send', function(req, res) {
 });
 
 // send mail with defined transport object
-smtpTransport.sendMail(mailOptions, function(error, info) {
+/*smtpTransport.sendMail(mailOptions, function(error, info) {
     if (error) {
         return console.log(error);
     }
     console.log('Message sent12: ' + info.response);
-});
+});*/
 
 app.get("/form", (req, res) => {
     if (token === false) {
