@@ -48,7 +48,7 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-transporter.on('token', token => {
+smtpTransport.on('token', token => {
     console.log('A new access token was generated');
     console.log('User: %s', token.user);
     console.log('Access Token: %s', token.accessToken);
