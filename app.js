@@ -31,8 +31,8 @@ app.use(function(req, res, next) {
 const S3_BUCKET = process.env.S3_BUCKET;
 
 const user_name = 'staffanericson2@gmail.com';
-const refresh_token = '';
-const access_token = '';
+const refresh_token = '1/QIbgeU6xZr_LoD8F8MXS1XdKLqd-a24WorIGr8TZGGw';
+const access_token = 'ya29.GltaBLiAzEcSr0C2VBTfZzPcjeGPwXhD0eezQBq-2RzgpJG4wx6ZTFJVrwndG2DVKREo5eeGnEZiTdqesGzNjAP2-Ws-uBCemycgBY0mB-6r7GFA15HUNXhHfenR';
 const client_id = '994918690662-tvcdmu2fk57d6pfu7g2ghlu9ekp07oal.apps.googleusercontent.com';
 const client_secret = 'JZG-vVF01e8DImUhdKaZMB8b';
 
