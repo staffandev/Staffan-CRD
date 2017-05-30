@@ -63,7 +63,13 @@ app.get('/send', function(req, res) {
     var mailOptions = {
         to: req.query.to,
         subject: req.query.subject,
-        text: req.query.text
+        text: req.query.text,
+        auth: {
+            user: user_name,
+            refreshToken: refresh_token,
+            accessToken: access_token,
+            expires: 1494388182480
+        }
     }
     console.log(mailOptions);
 });
