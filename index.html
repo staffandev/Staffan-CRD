@@ -202,7 +202,7 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" class="staffan-message" class="materialize-textarea"></textarea>
+                                            <textarea id="icon_prefix2" id="staffan-message" class="materialize-textarea"></textarea>
                                             <label for="icon_prefix2">Meddelande</label>
                                         </div>
                                     </div>
@@ -267,7 +267,7 @@
 
             <div class="footer-copyright">
                 <div class="container right">
-                    &copy; <a class="brown-text text-lighten-3" href="#"> Design: Staffan Ericson, Foto: Christian Berven</a>
+                    &copy; <a class="brown-text text-lighten-3" href="#"> Design/apputveckling: Staffan Ericson, Foto: Christian Berven</a>
                 </div>
             </div>
         </footer>
@@ -285,8 +285,8 @@
             var from, to, subject, text;
             $("#send-email").click(function() {
                 to = "staffanericson2@gmail.com";
-                subject = "node testmail";
-                text = $(".staffan-message").val();
+                subject = "MAIL FRÅN PORTFOLIO!!!!!!!!!!!!!!!!!!!!!!!";
+                text = $("#staffan-message").val();
                 $("#message2").text("Sending E-mail...Please wait");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
                     to: to,
