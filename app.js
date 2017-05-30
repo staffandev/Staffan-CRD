@@ -48,12 +48,12 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-/*smtpTransport.on('token', token => {
+smtpTransport.on('token', token => {
     console.log('A new access token was generated');
     console.log('User: %s', token.user);
     console.log('Access Token: %s', token.accessToken);
     console.log('Expires: %s', new Date(token.expires));
-});*/
+});
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");

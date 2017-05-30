@@ -202,7 +202,7 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" class="message" class="materialize-textarea"></textarea>
+                                            <textarea id="icon_prefix2" class="staffan-message" class="materialize-textarea"></textarea>
                                             <label for="icon_prefix2">Meddelande</label>
                                         </div>
                                     </div>
@@ -286,7 +286,7 @@
             $("#send-email").click(function() {
                 to = "staffanericson@gmail.com";
                 subject = "node testmail";
-                text = $(".message").val();
+                text = $(".staffan-message").val();
                 $("#message2").text("Sending E-mail...Please wait");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
                     to: to,
