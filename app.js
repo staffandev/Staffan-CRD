@@ -69,7 +69,7 @@ app.get('/send', function(req, res) {
 });
 
 // send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info) {
+smtpTransport.sendMail(mailOptions, function(error, info) {
     if (error) {
         return console.log(error);
     }
