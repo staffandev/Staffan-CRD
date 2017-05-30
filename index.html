@@ -290,7 +290,6 @@
                 text = $("#staffan-message").val();
                 $("#message2").text("Sending E-mail...Please wait");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
-                    from: from,
                     to: to,
                     subject: subject,
                     text: text

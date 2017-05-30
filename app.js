@@ -59,7 +59,6 @@ app.get('/send', function(req, res) {
     });
 
     var mailOptions = {
-        from: req.query.from,
         to: req.query.to,
         subject: req.query.subject,
         text: req.query.text,
