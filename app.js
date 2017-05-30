@@ -57,7 +57,9 @@ app.get('/send', function(req, res) {
         console.log('Access Token: %s', token.accessToken);
         console.log('Expires: %s', new Date(token.expires));
     });
+
     var mailOptions = {
+        from: req.query.from,
         to: req.query.to,
         subject: req.query.subject,
         text: req.query.text,
