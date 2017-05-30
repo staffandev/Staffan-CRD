@@ -73,7 +73,7 @@ smtpTransport.sendMail(mailOptions, function(error, info) {
     if (error) {
         return console.log(error);
     }
-    console.log('Message sent: ' + info.response);
+    console.log('Message sent12: ' + info.response);
 });
 
 app.get("/form", (req, res) => {
