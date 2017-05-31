@@ -30,55 +30,36 @@ app.use(function(req, res, next) {
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: "staffanericson2@gmail.com",
+        pass: "Dsign2006"
+    }
+});
+
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
 app.get('/send', function(req, res) {
-    const user_name = 'staffanericson2@gmail.com';
-    const refresh_token = '1/QIbgeU6xZr_LoD8F8MXS1XdKLqd-a24WorIGr8TZGGw';
-    const access_token = 'ya29.GltaBLiAzEcSr0C2VBTfZzPcjeGPwXhD0eezQBq-2RzgpJG4wx6ZTFJVrwndG2DVKREo5eeGnEZiTdqesGzNjAP2-Ws-uBCemycgBY0mB-6r7GFA15HUNXhHfenR';
-    const client_id = '994918690662-tvcdmu2fk57d6pfu7g2ghlu9ekp07oal.apps.googleusercontent.com';
-    const client_secret = 'JZG-vVF01e8DImUhdKaZMB8b';
-
-    const email_to = 'staffanericson2@gmail.com';
-    var smtpTransport = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            type: 'OAuth2',
-            clientId: client_id,
-            clientSecret: client_secret
-        }
-    });
-
-    smtpTransport.on('token', token => {
-        console.log('A new access token was generated');
-        console.log('User: %s', token.user);
-        console.log('Access Token: %s', token.accessToken);
-        console.log('Expires: %s', new Date(token.expires));
-    });
-
     var mailOptions = {
         to: req.query.to,
         subject: req.query.subject,
-        text: req.query.from + " " + req.query.email + " " + req.query.phone + " " + req.query.text,
-        auth: {
-            user: user_name,
-            refreshToken: refresh_token,
-            accessToken: access_token
-        }
+        text: req.query.text
     }
     console.log(mailOptions);
-    // send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(error, info) {
+    smtpTransport.sendMail(mailOptions, function(error, response) {
         if (error) {
-            return console.log(error);
+            console.log(error);
+            res.end("error");
+        } else {
+            console.log("Message sent: " + response.message);
+            res.end("sent");
         }
-        console.log('Message sent: ' + info.response);
     });
 });
-
-
 
 app.get("/form", (req, res) => {
     if (token === false) {
@@ -180,6 +161,12 @@ app.post("/", (req, res) => {
     }
     Data.create(info, (data) => {
         res.redirect("/form.html");
+    });
+});
+
+app.delete("/data", (req, res) => {
+    Data.findByIdAndRemove(req.body.id, function(data){
+        res.send(data);
     });
 });
 

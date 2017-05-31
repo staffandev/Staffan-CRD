@@ -34,6 +34,7 @@
     </form>
     <div id="box"> </div>
     <script>
+        var ajdee = [];
         /*
                       Function to carry out the actual PUT request to S3 using the signed request from the app.
                     */
@@ -82,6 +83,8 @@
         function initUpload() {
             const files = document.getElementById('file-input').files;
             const file = files[0];
+            var imageTag = file.name;
+            $("#image").val("https://portfolio-staffan.s3.amazonaws.com/" + imageTag);
             if (file == null) {
                 return alert('No file selected.');
             }
@@ -102,25 +105,41 @@
             $.ajax({
                 url: "https://staffan-portfolio.herokuapp.com/data",
                 success: function(result) {
-                    var object = result;
-                    console.log(object);
-                    for (var i = 0; i < object.length; i++) {
-                        console.log(object[i].imageurl);
-                        $("#box").append("<h3>" + object[i].title + "</h4>");
-                        $("#box").append("<h5>" + object[i].imageurl + "</h4>");
-                        $("#box").append("<h4>" + object[i].projekt + "</h4>");
-                        $("#box").append("<button class='delete'>DELETE ME PLEASE</button>");
-                        $("#box").append("<hr />");
-
+                    console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+                        ajdee.push(result[i]._id);
+                        $("#box").append("<h3 id='h3" + i + "'>" + result[i].title + "</h4>");
+                        $("#box").append("<img id='img" + i + "' src='"+result[i].imageurl+"' />");
+                        $("#box").append("<h4 id='h4" + i + "'>" + result[i].projekt + "</h4>");
+                        $("#box").append("<button id='" + i + "' class='delete'>DELETE ME PLEASE</button>");
+                        $("#box").append("<hr id='hr" + i + "' />");   
                     }
-                    /*  $(".delete").on("click", { id: object[i]._id }, asd);*/
+                      tabort(); 
                 }
             });
         });
 
-        function asd(event) {
-            console.log(event.data.id);
+        function tabort(){
+            $(".delete").click(function(){
+            var kalle = $(this);
+            var berit = kalle[0].id;
+            var id = ajdee[berit];
+            $.ajax({
+                url: "http://localhost:3000/data",
+                method: "DELETE",
+                data: {id: id},
+                success: function(result){
+                   $("#" + berit).slideUp();
+                   $("#h3" + berit).slideUp();
+                   $("#h4" + berit).slideUp();
+                   $("#hr" + berit).slideUp();
+                   $("#img" + berit).slideUp();
+                }
+            });
+          });
         }
+
+     
     </script>
 
 </body>
