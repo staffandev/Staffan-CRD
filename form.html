@@ -109,37 +109,37 @@
                     for (var i = 0; i < result.length; i++) {
                         ajdee.push(result[i]._id);
                         $("#box").append("<h3 id='h3" + i + "'>" + result[i].title + "</h4>");
-                        $("#box").append("<img id='img" + i + "' src='"+result[i].imageurl+"' />");
+                        $("#box").append("<img id='img" + i + "' src='" + result[i].imageurl + "' />");
                         $("#box").append("<h4 id='h4" + i + "'>" + result[i].projekt + "</h4>");
                         $("#box").append("<button id='" + i + "' class='delete'>DELETE ME PLEASE</button>");
-                        $("#box").append("<hr id='hr" + i + "' />");   
+                        $("#box").append("<hr id='hr" + i + "' />");
                     }
-                      tabort(); 
+                    tabort();
                 }
             });
         });
 
-        function tabort(){
-            $(".delete").click(function(){
-            var kalle = $(this);
-            var berit = kalle[0].id;
-            var id = ajdee[berit];
-            $.ajax({
-                url: "http://localhost:3000/data",
-                method: "DELETE",
-                data: {id: id},
-                success: function(result){
-                   $("#" + berit).slideUp();
-                   $("#h3" + berit).slideUp();
-                   $("#h4" + berit).slideUp();
-                   $("#hr" + berit).slideUp();
-                   $("#img" + berit).slideUp();
-                }
+        function tabort() {
+            $(".delete").click(function() {
+                var kalle = $(this);
+                var berit = kalle[0].id;
+                var id = ajdee[berit];
+                $.ajax({
+                    url: "https://staffan-portfolio.herokuapp.com/data",
+                    method: "DELETE",
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        $("#" + berit).slideUp();
+                        $("#h3" + berit).slideUp();
+                        $("#h4" + berit).slideUp();
+                        $("#hr" + berit).slideUp();
+                        $("#img" + berit).slideUp();
+                    }
+                });
             });
-          });
         }
-
-     
     </script>
 
 </body>
