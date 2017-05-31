@@ -26,6 +26,19 @@
         height: 337px;
     }
     
+    .bar {
+        margin: 57px;
+        width: 140px;
+        height: 140px;
+        text-align: center;
+    }
+    
+    .progressbar-text {
+        top: 75% !important;
+    }
+    
+    .skills {}
+    
     orange {
         color: rgba(239, 195, 109, 0.9);
     }

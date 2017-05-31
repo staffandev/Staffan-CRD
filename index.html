@@ -235,6 +235,31 @@
         <div class="parallax"><img src="images/back3.jpg"></div>
     </div>
     <div id="resume" class="section scrollspy">
+        <div class="container">
+            <div class="row" id="skills">
+                <div class="col s12 m6 l3">
+                    <div id="container1" class="bar">
+                        <h5>JS / Node </h5>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div id="container2" class="bar">
+                        <h5>Sharepoint</h5>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div id="container3" class="bar">
+                        <h5>UX/Design</h5>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div id="container4" class="bar">
+                        <h5>Backend</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="page-footer teal">
             <div class="container">
                 <div class="row">
@@ -279,9 +304,12 @@
     <script src="js/init.js"></script>
     <script src="js/portfolio.js"></script>
     <script src="js/animation.js"></script>
+    <script src="js/progressbar.js"></script>
+    <script src="js/bars.js"></script>
 
     <script>
         $(document).ready(function() {
+
             var from, to, email, phone, subject, text;
             $("#send-email").click(function() {
                 from = $("#icon_prefix").val();
@@ -314,7 +342,7 @@
 
             var image = new Array();
 
-            image[0] = "back3.gif";
+            image[0] = "gif/part2.gif";
             image[1] = "gif/back1.gif";
             image[2] = "gif/back3.gif";
             image[3] = "gif/back5.gif";
