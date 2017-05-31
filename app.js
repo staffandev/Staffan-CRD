@@ -61,7 +61,7 @@ app.get('/send', function(req, res) {
     var mailOptions = {
         to: req.query.to,
         subject: req.query.subject,
-        text: req.query.from + "<br> " + req.query.email + "<br> " + req.query.phone + "<br> " + req.query.text,
+        text: req.query.from + " " + req.query.email + " " + req.query.phone + " " + req.query.text,
         auth: {
             user: user_name,
             refreshToken: refresh_token,
