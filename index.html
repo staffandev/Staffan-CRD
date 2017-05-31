@@ -182,7 +182,7 @@
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">account_circle</i>
                                             <input id="icon_prefix" type="text" class="validate">
-                                            <label for="icon_prefix">Förnamn</label>
+                                            <label for="icon_prefix">Namn</label>
                                         </div>
                                         <div class="input-field col s6">
                                             <i class="material-icons prefix">Telefon</i>
@@ -202,7 +202,7 @@
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">mode_edit</i>
-                                            <textarea id="icon_prefix2" id="staffan-message" class="materialize-textarea"></textarea>
+                                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
                                             <label for="icon_prefix2">Meddelande</label>
                                         </div>
                                     </div>
@@ -282,16 +282,20 @@
 
     <script>
         $(document).ready(function() {
-            var from, to, email, subject, text;
+            var from, to, email, phone, subject, text;
             $("#send-email").click(function() {
-                from = $("#staffan-from").val();
+                from = $("#icon_prefix").val();
+                email = $("#icon_email").val();
+                phone = $("icon_telephone").val();
                 to = "staffanericson2@gmail.com";
-                subject = "MAIL FRÅN PORTFOLIO!!!!!!!!!!!!!!!!!!!!!!!";
-                text = $('materialize-textarea#staffan-message').val();
+                subject = "MAIL FRÅN PORTFOLIO";
+                text = $('.materialize-textarea').val();
                 $("#message2").text("Skickar E-mail...");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
                     from: from,
                     to: to,
+                    phone: phone,
+                    email: email,
                     subject: subject,
                     text: text
                 }, function(data) {
