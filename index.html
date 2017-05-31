@@ -287,8 +287,8 @@
                 from = $("#staffan-from").val();
                 to = "staffanericson2@gmail.com";
                 subject = "MAIL FRÅN PORTFOLIO!!!!!!!!!!!!!!!!!!!!!!!";
-                text = $(".staffan-message").val();
-                $("#message2").text("Sending E-mail...Please wait");
+                text = $('materialize-textarea#staffan-message').val();
+                $("#message2").text("Skickar E-mail...");
                 $.get("https://staffan-portfolio.herokuapp.com/send", {
                     from: from,
                     to: to,
