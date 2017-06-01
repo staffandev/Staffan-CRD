@@ -1,354 +1,263 @@
-    /* Custom Stylesheet */
-    /**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-    
-    @font-face {
-        font-family: 'f37_bellaregular';
-        src: url('../fonts/f37bella-webfont.woff2') format('woff2'), url('../fonts/f37bella-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-    
-    #bella {
-        font-family: 'f37_bellaregular' !important;
-    }
-    
-    .section {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    
-    .carousel carousel-slider {
-        height: 337px;
-    }
-    
-    .bar {
-        margin: 57px;
-        width: 140px;
-        height: 140px;
-        text-align: center;
-    }
-    
-    .progressbar-text {
-        top: 75% !important;
-    }
-    
-    .skills {}
-    
-    orange {
-        color: rgba(239, 195, 109, 0.9);
-    }
-    
-    .carousel .indicators .indicator-item.active {
-        background-color: #475061;
-    }
-    
-    .carousel .indicators .indicator-item {
-        background-color: rgb(218, 218, 218);
-    }
-    
+@font-face {
+    font-family: 'f37_bellaregular';
+    src: url('../fonts/f37bella-webfont.woff2') format('woff2'), url('../fonts/f37bella-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#bella {
+    font-family: 'f37_bellaregular' !important;
+}
+
+.section {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.carousel carousel-slider {
+    height: 337px;
+}
+
+.test {
+    height: 10em;
+    position: relative
+}
+
+.bar {
+    margin: 57px;
+    width: 140px;
+    height: 140px;
+    text-align: center;
+}
+
+.progressbar-text {
+    top: 75% !important;
+}
+
+.svg-cont {
+    width: 75%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    margin-top: 287px;
+}
+
+.svg-cont svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+svg>span {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#ps4 path,
+line,
+polyline {
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+path {
+    fill: transparent;
+}
+
+polyline {
+    stroke-width: 4px;
+}
+
+#ps4 path {
+    stroke-width: 2px;
+}
+
+orange {
+    color: rgba(239, 195, 109, 0.9);
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: #475061;
+}
+
+.carousel .indicators .indicator-item {
+    background-color: rgb(218, 218, 218);
+}
+
+#h-margin {
+    margin-top: 3%;
+    margin-left: 41%;
+}
+
+.headings {
+    min-height: 480px;
+    line-height: 0;
+    height: auto;
+}
+
+#h2-margin {
+    margin-top: -2%;
+    margin-left: 28%;
+}
+
+#logo-container img {
+    max-height: 47px;
+    margin-top: 7px;
+}
+
+.brown-text {
+    color: #10111a !important;
+}
+
+.btn,
+.btn-large {
+    background-color: #475061 !important;
+}
+
+.button-collapse {
+    color: #475061 !important;
+}
+
+.teal {
+    background-color: #6e7484 !important;
+}
+
+.brown-text.text-lighten-3 {
+    color: #cecccb !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.f-nav {
+    /* To fix main menu container */
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 0.0625em 0.625em rgba(39, 43, 55, 0.25);
+    box-shadow: 0 0.0625em 0.625em rgba(39, 43, 55, 0.25);
+    -webkit-transition: -webkit-transform .2s ease-in, left 0s .2s;
+    transition: transform .2s ease-in, left 0s .2s;
+}
+
+nav ul a,
+nav .brand-logo {
+    color: #444;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #444;
+}
+
+.parallax-container {
+    min-height: 680px;
+    line-height: 0;
+    /* height: auto;*/
+    color: rgba(221, 230, 154, 0.9);
+}
+
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width: 321px) {
     #h-margin {
-        margin-top: 3%;
-        margin-left: 41%;
+        max-width: 300px;
+        margin-top: 480px;
+        margin-left: -97px;
+        text-align: right;
     }
-    
-    .headings {
-        min-height: 480px;
-        line-height: 0;
-        height: auto;
-    }
-    
     #h2-margin {
-        margin-top: -2%;
-        margin-left: 28%;
+        display: none;
     }
-    
-    #logo-container img {
-        max-height: 47px;
-        margin-top: 7px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+    #h-margin {
+        margin-top: 280px;
+        margin-left: 100px;
+        text-align: -webkit-right;
     }
-    
-    .brown-text {
-        color: #10111a !important;
+    #h2-margin {
+        display: none;
     }
-    
-    .btn,
-    .btn-large {
-        background-color: #475061 !important;
+    .carousel {
+        height: 1040px !important;
     }
-    
-    .button-collapse {
-        color: #475061 !important;
+    .styleaMig {
+        float: left;
+        margin-left: 10px;
     }
-    
-    .teal {
-        background-color: #6e7484 !important;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+    #h-margin {
+        margin-top: 480px;
+        margin-left: -45px;
+        text-align: right;
+        max-width: 300px;
     }
-    
-    .brown-text.text-lighten-3 {
-        color: #cecccb !important;
+    .carousel {
+        height: 1040px !important;
     }
-    
-    #Logo {
-        /*width: 150%;*/
-        height: 100%;
-        position: absolute;
-        width: 110%;
-        right: 106px;
-        bottom: -300px;
-        /* top: 76%; right: 0; bottom: 0; left: -38%;*/
-        /*  margin: auto;*/
-        left: - 150px;
-        display: block;
-        fill: #cccccc;
-        stroke: #10111a;
-        stroke-miterlimit: 5;
+    .container .row {
+        margin-left: 0;
+        margin-right: 0;
     }
-    
-    .Animate-Draw {
-        fill-opacity: 0;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
-        animation-iteration: 1;
-        animation-name: DrawLine, FadeStroke, FillIn;
-        animation-duration: 6s, 1s, 1s;
-        animation-delay: 0s, 3.5s, 3.5s;
+    .styleaMig {
+        float: left;
+        margin-left: 25px;
     }
-    
-    #Draw-Mark {
-        stroke-dashArray: 1100;
-        stroke-dashoffset: 1100;
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+    #h-margin {
+        margin-top: 480px;
+        margin-left: -4px;
+        text-align: right;
+        max-width: 300px;
     }
-    
-    #Draw-Mark2 {
-        stroke-dashArray: 1100;
-        stroke-dashoffset: 1100;
+    .carousel {
+        height: 1040px !important;
     }
-    
-    #Draw-Cirlce {
-        stroke-dashArray: 1100;
-        stroke-dashoffset: 1100;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+    #h-margin {
+        margin-top: 480px;
+        margin-left: -45px;
+        text-align: right;
+        max-width: 300px;
     }
-    
-    @keyframes DrawLine {
-        to {
-            stroke-dashOffset: 0;
-        }
+    .container .row {
+        margin-left: 0;
+        margin-right: 0;
     }
-    
-    @keyframes FadeStroke {
-        to {
-            stroke-opacity: 1;
-        }
-    }
-    
-    @keyframes FillIn {
-        from {
-            fill-opacity: 0;
-        }
-        to {
-            fill-opacity: 1;
-        }
-    }
-    
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: 'Work Sans', sans-serif;
-    }
-    
-    .f-nav {
-        /* To fix main menu container */
-        z-index: 9999;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        -webkit-box-shadow: 0 0.0625em 0.625em rgba(39, 43, 55, 0.25);
-        box-shadow: 0 0.0625em 0.625em rgba(39, 43, 55, 0.25);
-        -webkit-transition: -webkit-transform .2s ease-in, left 0s .2s;
-        transition: transform .2s ease-in, left 0s .2s;
-    }
-    
-    nav ul a,
-    nav .brand-logo {
-        color: #444;
-    }
-    
-    p {
-        line-height: 2rem;
-    }
-    
-    .button-collapse {
-        color: #444;
-    }
-    
-    .parallax-container {
-        min-height: 480px;
-        line-height: 0;
-        height: auto;
-        color: rgba(221, 230, 154, 0.9);
-    }
-    
-    .parallax-container .section {
-        width: 100%;
-    }
-    
-    @media only screen and (max-width: 321px) {
-        #Logo {
-            max-width: 326px;
-            position: absolute;
-            right: 0.px;
-            bottom: -260px;
-            left: -46px;
-        }
-        #h-margin {
-            max-width: 300px;
-            margin-top: 480px;
-            margin-left: -97px;
-            text-align: right;
-        }
-        #h2-margin {
-            display: none;
-        }
-        .Animate-Draw {
-            clip-path: inset(0px 500px 0px 0px);
-        }
-    }
-    
-    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-        #Logo {
-            max-width: 326px;
-            position: absolute;
-            right: 0.px;
-            bottom: -300px;
-            left: -48px;
-        }
-        #h-margin {
-            margin-top: 280px;
-            margin-left: 100px;
-            text-align: -webkit-right;
-        }
-        #h2-margin {
-            display: none;
-        }
-        .carousel {
-            height: 1040px !important;
-        }
-        .styleaMig {
-            float: left;
-            margin-left: 10px;
-        }
-    }
-    
-    @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-        #Logo {
-            max-width: 377px;
-            position: absolute;
-            right: 0.px;
-            bottom: -300px;
-            left: -46px;
-        }
-        .Animate-Draw {
-            clip-path: inset(0px 500px 0px 0px);
-        }
-        #h-margin {
-            margin-top: 480px;
-            margin-left: -45px;
-            text-align: right;
-            max-width: 300px;
-        }
-        .carousel {
-            height: 1040px !important;
-        }
-        .container .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-        .styleaMig {
-            float: left;
-            margin-left: 25px;
-        }
-    }
-    
-    @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
-        #Logo {
-            max-width: 377px;
-            position: absolute;
-            right: 0.px;
-            bottom: -300px;
-            left: -37px;
-        }
-        .Animate-Draw {
-            clip-path: inset(0px 500px 0px 0px);
-        }
-        #h-margin {
-            margin-top: 480px;
-            margin-left: -4px;
-            text-align: right;
-            max-width: 300px;
-        }
-        .carousel {
-            height: 1040px !important;
-        }
-    }
-    
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-        #logo {
-            width: 120%;
-            right: 106px;
-            bottom: -300px;
-        }
-    }
-    
-    @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
-        #Logo {
-            max-width: 377px;
-            position: absolute;
-            right: 0.px;
-            bottom: -300px;
-            left: -51px;
-        }
-        .Animate-Draw {
-            clip-path: inset(0px 500px 0px 0px);
-        }
-        #h-margin {
-            margin-top: 480px;
-            margin-left: -45px;
-            text-align: right;
-            max-width: 300px;
-        }
-        .container .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
-    
-    @media only screen and (max-width: 3000px) {
-        #logo {
-            width: 120%;
-            right: 106px;
-            bottom: -300px;
-        }
-    }
-    
-    @media only screen and (max-width: 1543px) {
-        #logo {
-            width: 120%;
-            right: 106px;
-            bottom: -300px;
-        }
-    }
-    
-    @media only screen and (max-width: 992px) {
-        .parallax-container .section {
+}
+
+@media only screen and (max-width: 3000px) {}
+
+@media only screen and (max-width: 1543px) {}
+
+@media only screen and (max-width: 992px) {
+    /*   .parallax-container .section {
             position: absolute;
             top: 40%;
         }
@@ -365,11 +274,11 @@
         }
         #h1-margin {
             display: none;
-        }
-    }
-    
-    @media only screen and (max-width: 760px) {
-        #index-banner .section {
+        }*/
+}
+
+@media only screen and (max-width: 760px) {
+    /*      #index-banner .section {
             top: 0;
         }
         #index-banner .section {
@@ -385,5 +294,5 @@
         }
         #h1-margin {
             display: none;
-        }
-    }
+        }*/
+}
