@@ -5,6 +5,7 @@
         $('.parallax').parallax();
         $('.carousel.carousel-slider').carousel({ fullWidth: true });
         $('ul.tabs').tabs();
+        $('select').material_select();
 
         var nav = $('#main-menu-container');
 
