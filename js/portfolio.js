@@ -2,22 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     searchProjects();
 
-    /*    //Remove encaspulated Tags
-
-        $.fn.ignore = function (sel) {
-            return this.clone().find(sel || ">*").remove().end();
-        };
-
-        $(".clk > a").click(function (event) {
-
-            var selectedB = $(this).ignore("i").text();
-            searchITbooksAPI(selectedB);
-        });
-
-    });*/
-
     var projects = [];
-
+    var hiddenProjects = [];
     var id = 0;
     var title = "";
     var subTitle = "";
@@ -48,23 +34,57 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getProjects() {
         document.getElementById("books").innerHTML = "";
-        projects.forEach(function(arrayItem) {
+        projects.map(function(arrayItem, i) {
             console.log(arrayItem);
             id = arrayItem._id;
             title = arrayItem.title;
             subTitle = arrayItem.subtitle;
             desc = arrayItem.desc;
             imgUrl = arrayItem.imageurl;
-            showProject(id, title, subTitle, desc, imgUrl);
-        });
+            if (i <= 2) {
+                var slide = "slide1";
+                showProject(id, title, subTitle, desc, imgUrl, slide);
+            } else if (i >= 2 && i <= 5) {
+                var slide = "slide2";
+                showProject(id, title, subTitle, desc, imgUrl, slide);
+            } else if (i >= 5 && i <= 8) {
+                var slide = "slide3";
+                showProject(id, title, subTitle, desc, imgUrl, slide);
+            } else if (i >= 8 && i <= 11) {
+                var slide = "slide4";
+                showProject(id, title, subTitle, desc, imgUrl, slide);
+            } else {
+                var moreProjects = {
+                    id: id,
+                    title: title,
+                    subTitle: subTitle,
+                    desc: desc,
+                    imgUrl: imgUrl
+                }
 
+                hiddenProjects.push(moreProjects);
+            }
+
+            /* return (i !== 2);*/
+            return
+        });
+        /*        projects.each(function(index, arrayItem) {
+                    console.log(arrayItem);
+                    id = arrayItem._id;
+                    title = arrayItem.title;
+                    subTitle = arrayItem.subtitle;
+                    desc = arrayItem.desc;
+                    imgUrl = arrayItem.imageurl;
+                    showProject(id, title, subTitle, desc, imgUrl);
+                    return (index !== 2);
+                })*/
     }
 
-    function showProject(id, title, subTitle, desc, imgUrl) {
+    function showProject(id, title, subTitle, desc, imgUrl, slide) {
 
         //Här visas resultatet
 
-        var target = document.getElementById("books");
+        var target = document.getElementById(slide);
 
         // Ny div skapas
         var product = document.createElement("div");
@@ -86,6 +106,9 @@ document.addEventListener("DOMContentLoaded", function() {
         htmlToAdd += "</div>";
         htmlToAdd += "</div>";
         htmlToAdd += "</div>";
+
+        /*       htmlToAdd += "<div>" + desc + "</div>";
+               htmlToAdd += "<div><input type='button' value='Ladda hem' id='"+ id + "'/>";*/
 
         // sista formatering
         product.innerHTML = htmlToAdd;

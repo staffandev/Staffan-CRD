@@ -4,6 +4,8 @@
         $('.button-collapse').sideNav();
         $('.parallax').parallax();
         $('.carousel.carousel-slider').carousel({ fullWidth: true });
+        $('ul.tabs').tabs();
+
         var nav = $('#main-menu-container');
 
         $(window).scroll(function() {
