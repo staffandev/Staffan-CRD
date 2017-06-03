@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getProjects() {
         document.getElementById("books").innerHTML = "";
-        document.getElementById("slide1"), innerHTML = "";
-        document.getElementById("slide2"), innerHTML = "";
-        document.getElementById("slide3"), innerHTML = "";
-        document.getElementById("slide4"), innerHTML = "";
+        document.getElementById("slide1").innerHTML = "";
+        document.getElementById("slide2").innerHTML = "";
+        document.getElementById("slide3").innerHTML = "";
+        document.getElementById("slide4").innerHTML = "";
         projects.map(function(arrayItem, i) {
             console.log(arrayItem);
             id = arrayItem._id;
