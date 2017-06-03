@@ -49,10 +49,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function getProjects() {
         /*document.getElementById("books").innerHTML = "";*/
+        if ($('#slide2').length) // use this if you are using id to check
+        {
+            document.getElementById("slide2").innerHTML = "";
+        } else if ($('#slide3').length) {
+            document.getElementById("slide3").innerHTML = "";
+        } else if ($('#slide4').length) {
+            document.getElementById("slide4").innerHTML = "";
+        }
         document.getElementById("slide1").innerHTML = "";
-        document.getElementById("slide2").innerHTML = "";
-        document.getElementById("slide3").innerHTML = "";
-        document.getElementById("slide4").innerHTML = "";
+
+
+
         projects.map(function(arrayItem, i) {
             console.log(arrayItem);
             id = arrayItem._id;
