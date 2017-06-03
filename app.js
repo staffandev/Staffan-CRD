@@ -27,7 +27,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-
 const S3_BUCKET = process.env.S3_BUCKET;
 
 var smtpTransport = nodemailer.createTransport({
@@ -152,6 +151,7 @@ app.get("/data", (req, res) => {
 });
 
 app.post("/", (req, res) => {
+    console.log(req);
     var info = {
         imageurl: req.body.image,
         projekt: req.body.projekt,
@@ -165,7 +165,7 @@ app.post("/", (req, res) => {
 });
 
 app.delete("/data", (req, res) => {
-    Data.findByIdAndRemove(req.body.id, function(data){
+    Data.findByIdAndRemove(req.body.id, function(data) {
         res.send(data);
     });
 });
