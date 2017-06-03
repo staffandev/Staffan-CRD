@@ -64,17 +64,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 $("#slide2").hide();
                 $("#slide3").hide();
                 $("#slide4").hide();
+                $(".inidcators:nth-child(2)").hide();
+                $(".inidcators:nth-child(3)").hide();
+                $(".inidcators:nth-child(4)").hide();
                 var slide = "slide1";
                 showProject(id, title, subTitle, desc, imgUrl, slide);
 
             } else if (i >= 2 && i <= 5) {
                 $("#slide3").hide();
                 $("#slide4").hide();
+                $(".inidcators:nth-child(3)").hide();
+                $(".inidcators:nth-child(4)").hide();
                 var slide = "slide2";
                 showProject(id, title, subTitle, desc, imgUrl, slide);
             } else if (i >= 5 && i <= 8) {
                 $("#slide4").hide();
                 var slide = "slide3";
+                $(".inidcators:nth-child(4)").hide();
                 showProject(id, title, subTitle, desc, imgUrl, slide);
             } else if (i >= 8 && i <= 11) {
                 var slide = "slide4";
