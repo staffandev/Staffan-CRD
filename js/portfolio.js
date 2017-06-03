@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getProjects() {
-        document.getElementById("books").innerHTML = "";
+        /*document.getElementById("books").innerHTML = "";*/
         document.getElementById("slide1").innerHTML = "";
         document.getElementById("slide2").innerHTML = "";
         document.getElementById("slide3").innerHTML = "";
