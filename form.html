@@ -36,10 +36,10 @@
             <div class="input-field col s12">
                 <select name="projekt">
       <option value="" disabled selected>Välj projekttyp</option>
-      <option value="1">Webb</option>
-      <option value="2">Print</option>
-      <option value="3">Backend</option>
-      <option value="3">Övrigt</option>
+      <option value="Webb">Webb</option>
+      <option value="Print">Print</option>
+      <option value="Backend">Backend</option>
+      <option value="Övrigt">Övrigt</option>
     </select>
                 <label>Projekt</label>
             </div>
@@ -177,6 +177,7 @@
         })();
 
         var array = [];
+
         $("#getInfo").click(function() {
             $.ajax({
                 url: "https://staffan-portfolio.herokuapp.com/data",
