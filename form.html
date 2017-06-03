@@ -169,13 +169,18 @@
         /*
          Bind listeners when the page loads.
         */
-        (() => {
+        /*    (() => {
+                document.getElementById('file-input').onchange = initUpload;
+                $('#avatar-url').change(function() {
+                    $('#image').val($(this).val());
+                });
+            })();*/
+        $(function() {
             document.getElementById('file-input').onchange = initUpload;
             $('#avatar-url').change(function() {
                 $('#image').val($(this).val());
             });
-        })();
-
+        });
         var array = [];
 
         $("#getInfo").click(function() {
