@@ -154,7 +154,7 @@ app.post("/", (req, res) => {
     console.log(req);
     var info = {
         imageurl: req.body.image,
-        projekt: req.body.selectpicker,
+        projekt: req.body.projekt,
         title: req.body.title,
         subtitle: req.body.subtitle,
         desc: req.body.desc
