@@ -1,9 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
+    var data = "data";
+    document.getElementById("webb").addEventListener("click", function() {
+        data = "web"
+        searchProjects(data);
+    });
+    document.getElementById("print").addEventListener("click", function() {
+        data = "print"
+        searchProjects(data);
+    });
+    document.getElementById("backend").addEventListener("click", function() {
+        data = "backend"
+        searchProjects(data);
+    });
+    document.getElementById("other").addEventListener("click", function() {
+        data = "other"
+        searchProjects(data);
+    });
 
-    searchProjects();
+    searchProjects(data);
 
     var projects = [];
-    var hiddenProjects = [];
     var id = 0;
     var title = "";
     var subTitle = "";
@@ -11,9 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var imgUrl = "";
     var dLoadUrl = "";
 
-
-    function searchProjects() {
-        var url = "https://staffan-portfolio.herokuapp.com/data";
+    function searchProjects(filter) {
+        var url = "https://staffan-portfolio.herokuapp.com/" + filter;
         console.log(url);
         $.ajax({
             type: "GET",

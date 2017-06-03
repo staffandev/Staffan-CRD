@@ -121,8 +121,6 @@ app.post("/register", (req, res) => {
     });
 });
 
-
-
 app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/login.html");
 });
@@ -150,6 +148,30 @@ app.get("/data", (req, res) => {
     });
 });
 
+app.get("/print", (req, res) => {
+    Data.find({ "projekt": "Print" }, function(err, data) {
+        res.send(data);
+    });
+});
+
+app.get("/web", (req, res) => {
+    Data.find({ "projekt": "Web" }, function(err, data) {
+        res.send(data);
+    });
+});
+
+app.get("/backend", (req, res) => {
+    Data.find({ "projekt": "Backend" }, function(err, data) {
+        res.send(data);
+    });
+});
+
+app.get("/other", (req, res) => {
+    Data.find({ "projekt": "Övrigt" }, function(err, data) {
+        res.send(data);
+    });
+});
+
 app.post("/", (req, res) => {
     console.log(req);
     var info = {
@@ -169,7 +191,6 @@ app.delete("/data", (req, res) => {
         res.send(data);
     });
 });
-
 
 app.listen(process.env.PORT || 3000, function() {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

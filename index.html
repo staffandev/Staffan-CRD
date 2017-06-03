@@ -87,10 +87,10 @@
                         <div class="row">
                             <div class="col s12">
                                 <ul class="tabs">
-                                    <li class="tab col s3"><a class="active" href="#test1">Webb</a></li>
-                                    <li class="tab col s3"><a href="#test2">Print</a></li>
-                                    <li class="tab col s3"><a href="#test3">Backend</a></li>
-                                    <li class="tab col s3"><a href="#test4">Övrigt</a></li>
+                                    <li class="tab col s3" id="webb"><a class="active" href="#test1">Webb</a></li>
+                                    <li class="tab col s3" id="print"><a href="#test2">Print</a></li>
+                                    <li class="tab col s3" id="backend"><a href="#test3">Backend</a></li>
+                                    <li class="tab col s3" id="other"><a href="#test4">Övrigt</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -108,12 +108,12 @@
                             </a>
                             <a class="carousel-item" id="slide3" href="#three!">
                                 <p>
-                                    <h1> page 3</h1>
+
                                 </p>
                             </a>
                             <a class="carousel-item" id="slide4" href="#four!">
                                 <p>
-                                    <h1> page 4</h1>
+
                                 </p>
                             </a>
 
@@ -357,20 +357,15 @@
         var x = 0;
 
         function rndImage() {
-
-
             var image = new Array();
-
             image[0] = "gif/part2.gif";
             image[1] = "gif/back1.gif";
             image[2] = "gif/back3.gif";
             image[3] = "gif/back5.gif";
             var size = image.length;
             x = Math.floor(size * Math.random());
-
             $('#random').attr('src', image[x]);
         }
-
         rndImage();
         animation(x);
     </script>

@@ -35,7 +35,7 @@
             <div class="input-field col s12">
                 <select name="projekt">
       <option value="" disabled selected>Välj projekttyp</option>
-      <option value="Webb">Webb</option>
+      <option value="Web">Web</option>
       <option value="Print">Print</option>
       <option value="Backend">Backend</option>
       <option value="Övrigt">Övrigt</option>
@@ -66,26 +66,10 @@
         </div>
     </div>
 
-    <!--   <form method="POST" action="/">
-        <label>Title: </label><input type="text" name="title" />
-        <label>SubTitle: </label><input type="text" name="subtitle" />
-        <label>Imageurl: </label><input type="text" id="image" name="image" value="/images/default.png" />
-        <label>Projekt: </label><input type="text" name="projekt" />
-        <label>Descrition: </label><input type="text" name="desc" />
-        <input type="submit" />
-    </form>-->
-
-    <!--    <button id="getInfo">Hämta från DB</button>-->
-
-
     <hr>
     <div class="row">
         <div class="col s12">
             <h4>Ladda upp en bild</h4>
-
-            <!-- <input type="file" id="file-input">
-    <p id="status">Please select a file</p>-->
-
 
             <div class="file-field input-field">
                 <div class="btn">
@@ -106,7 +90,11 @@
             </form>
         </div>
     </div>
-    <div id="box"> </div>
+    <div class="row">
+        <div class="col s12">
+            <div id="box"> </div>
+        </div>
+    </div>
 
     <script>
         var ajdee = [];
@@ -170,17 +158,9 @@
         /*
          Bind listeners when the page loads.
         */
-        /*    (() => {
-                document.getElementById('file-input').onchange = initUpload;
-                $('#avatar-url').change(function() {
-                    $('#image').val($(this).val());
-                });
-            })();*/
+
         $(function() {
             document.getElementById('file-input').onchange = initUpload;
-            /* $('#avatar-url').change(function() {
-                 $('#image').val($(this).val());
-             });*/
         });
         var array = [];
 
