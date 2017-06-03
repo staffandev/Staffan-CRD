@@ -28,7 +28,7 @@
                 <label for="last_name">Subtitle</label>
             </div>
             <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate" id="image" name="image" value="/images/default.png">
+                <input id="last_name" type="text" class="active" id="image" name="image" value="/images/default.png">
                 <label for="last_name">Image URL</label>
             </div>
 
@@ -159,7 +159,7 @@
             const files = document.getElementById('file-input').files;
             const file = files[0];
             var imageTag = "https://portfolio-staffan.s3.amazonaws.com/" + file.name;
-            $("#image").val() = imageTag;
+            $("#image").val = imageTag;
             if (file == null) {
                 return alert('No file selected.');
             }
