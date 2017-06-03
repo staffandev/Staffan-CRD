@@ -61,26 +61,20 @@ document.addEventListener("DOMContentLoaded", function() {
             desc = arrayItem.desc;
             imgUrl = arrayItem.imageurl;
             if (i <= 2) {
-                $("#slide2").hide();
-                $("#slide3").hide();
-                $("#slide4").hide();
-                $("ul.indicators:nth-child(2)").hide();
-                $("ul.indicators:nth-child(3)").hide();
-                $("ul.indicators:nth-child(4)").hide();
+                $("#slide2").remove();
+                $("#slide3").remove();
+                $("#slide4").remove();
                 var slide = "slide1";
                 showProject(id, title, subTitle, desc, imgUrl, slide);
 
             } else if (i >= 2 && i <= 5) {
-                $("#slide3").hide();
-                $("#slide4").hide();
-                $("ul.indicators:nth-child(3)").hide();
-                $("ul.indicators:nth-child(4)").hide();
+                $("#slide3").remove();
+                $("#slide4").remove();
                 var slide = "slide2";
                 showProject(id, title, subTitle, desc, imgUrl, slide);
             } else if (i >= 5 && i <= 8) {
-                $("#slide4").hide();
+                $("#slide4").remove();
                 var slide = "slide3";
-                $("ul.indicators:nth-child(4)").hide();
                 showProject(id, title, subTitle, desc, imgUrl, slide);
             } else if (i >= 8 && i <= 11) {
                 var slide = "slide4";
