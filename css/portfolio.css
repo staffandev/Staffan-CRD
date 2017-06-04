@@ -107,4 +107,13 @@ body {
     .card-panel hoverable {
         width: 400px;
     }
+    .card-panel {
+        width: 197px;
+    }
+    .card {
+        height: 220px;
+    }
+    .carousel {
+        height: 350px;
+    }
 }
