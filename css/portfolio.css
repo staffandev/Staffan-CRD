@@ -52,16 +52,18 @@
     max-height: 244px !important;
 }
 
-.card-reveal a {
-    color: #444;
-}
-
 .carousel.carousel-slider .carousel-item p {
     text-align: left;
+    color: #444;
+    line-height: 1rem;
 }
 
 .card .card-title {
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
