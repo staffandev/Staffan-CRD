@@ -113,7 +113,7 @@ body {
     .card {
         height: 220px;
     }
-    .carousel {
-        height: 350px;
+    .carousel carousel-slider center initialized {
+        height: 350px !important;
     }
 }
