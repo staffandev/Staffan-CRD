@@ -130,7 +130,19 @@ orange {
 }
 
 
-/* Forms */
+/* Portfolio cards */
+
+card .card-image img {
+    max-height: 192px;
+}
+
+.card-panel {
+    padding: 10px;
+}
+
+.card {
+    margin: 0.5rem 0 0.5rem 0;
+}
 
 
 /* label color */
