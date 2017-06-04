@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var data = "data";
+    var data = "print";
     document.getElementById("webb").addEventListener("click", function() {
         data = "web"
         searchProjects(data);
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var desc = "";
     var imgUrl = "";
     var dLoadUrl = "";
+
 
     function searchProjects(filter) {
         var url = "https://staffan-portfolio.herokuapp.com/" + filter;
