@@ -52,18 +52,50 @@
     max-height: 244px !important;
 }
 
-.carousel.carousel-slider .carousel-item p {
-    text-align: left;
-    color: #444;
-    line-height: 1rem;
-}
-
 .card .card-title {
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+}
+
+.carousel {
+    position: relative;
+    width: 890px !important;
+    margin: 0 auto;
+}
+
+.carousel.carousel-slider .carousel-item p {
+    text-align: left;
+    color: #444;
+    line-height: 1rem;
+}
+
+.carousel carousel-slider {
+    height: 337px;
+    position: relative;
+    /*  top: 0;
+    left: 0;*/
+    width: 890px !important;
+    display: block;
+    left: -10px;
+}
+
+.carousel .carousel-item {
+    display: none;
+    width: 200px;
+    height: 200px;
+    position: /* top: 0; */
+    /* left: 0; */
+}
+
+.carousel .indicators .indicator-item.active {
+    background-color: #475061;
+}
+
+.carousel .indicators .indicator-item {
+    background-color: rgb(218, 218, 218);
 }
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
@@ -105,15 +137,16 @@ body {
 
 @media only screen and (max-width: 768px) {
     .card-panel hoverable {
-        width: 350px;
+        width: 197px;
     }
     .card-panel {
         width: 197px;
+        min-height: 220px !important;
     }
     .card {
         height: 220px;
     }
-    .carousel carousel-slider center initialized {
+    .carousel {
         height: 350px !important;
     }
 }

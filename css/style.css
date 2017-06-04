@@ -16,6 +16,26 @@
 
 .carousel carousel-slider {
     height: 337px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 890px !important;
+    display: block;
+}
+
+#port-slide {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.port-centerfix {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .test {
@@ -127,21 +147,6 @@ orange {
 
 .brown-text.text-lighten-3 {
     color: #cecccb !important;
-}
-
-
-/* Portfolio cards */
-
-card .card-image img {
-    max-height: 192px !important;
-}
-
-.card-panel {
-    padding: 10px !important;
-}
-
-.card {
-    margin: 0.5rem 0 0.5rem 0 !important;
 }
 
 
@@ -334,7 +339,6 @@ p {
     }
     .styleaMig {
         float: left;
-        margin-left: 10px;
     }
 }
 
