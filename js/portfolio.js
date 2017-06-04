@@ -118,31 +118,31 @@ document.addEventListener("DOMContentLoaded", function() {
         //Här visas resultatet
 
         var target = document.getElementById(slide);
+        if (target !== null) {
+            // Ny div skapas
+            var product = document.createElement("div");
+            product.setAttribute("class", "styleaMig");
 
-        // Ny div skapas
-        var product = document.createElement("div");
-        product.setAttribute("class", "styleaMig");
+            // HTML sträng skapas
+            var htmlToAdd = "<div class='col s4'>";
+            htmlToAdd = "<div class='card-panel hoverable' >";
+            htmlToAdd += "<div class='card'> <div class='card-image waves-effect waves-block waves-light'>";
+            htmlToAdd += "<img class='activator' src='" + imgUrl + "'></div>";
+            htmlToAdd += "<div class='card-content'>";
+            htmlToAdd += "<span class='card-title activator grey-text text-darken-4'>" + title + "<i class='material-icons right'>more_vert</i></span>";
+            htmlToAdd += "</div>";
+            htmlToAdd += "<div class='card-reveal'>";
+            htmlToAdd += "<span class='card-title grey-text text-darken-4'>" + title + "<i class='material-icons right'>close</i></span>";
+            htmlToAdd += "<p>" + subTitle + "</p>";
+            htmlToAdd += "<p>" + desc + "</p>";
+            htmlToAdd += "</div>";
+            htmlToAdd += "</div>";
+            htmlToAdd += "</div>";
+            htmlToAdd += "</div>";
 
-        // HTML sträng skapas
-        var htmlToAdd = "<div class='col s4'>";
-        htmlToAdd = "<div class='card-panel hoverable' >";
-        htmlToAdd += "<div class='card'> <div class='card-image waves-effect waves-block waves-light'>";
-        htmlToAdd += "<img class='activator' src='" + imgUrl + "'></div>";
-        htmlToAdd += "<div class='card-content'>";
-        htmlToAdd += "<span class='card-title activator grey-text text-darken-4'>" + title + "<i class='material-icons right'>more_vert</i></span>";
-        htmlToAdd += "</div>";
-        htmlToAdd += "<div class='card-reveal'>";
-        htmlToAdd += "<span class='card-title grey-text text-darken-4'>" + title + "<i class='material-icons right'>close</i></span>";
-        htmlToAdd += "<p>" + subTitle + "</p>";
-        htmlToAdd += "<p>" + desc + "</p>";
-        htmlToAdd += "</div>";
-        htmlToAdd += "</div>";
-        htmlToAdd += "</div>";
-        htmlToAdd += "</div>";
+            /*       htmlToAdd += "<div>" + desc + "</div>";
+                   htmlToAdd += "<div><input type='button' value='Ladda hem' id='"+ id + "'/>";*/
 
-        /*       htmlToAdd += "<div>" + desc + "</div>";
-               htmlToAdd += "<div><input type='button' value='Ladda hem' id='"+ id + "'/>";*/
-        if (produkct !== null) {
             // sista formatering
             product.innerHTML = htmlToAdd;
             //HTML injectas
