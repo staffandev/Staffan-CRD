@@ -146,7 +146,7 @@
         function initUpload() {
             const files = document.getElementById('file-input').files;
             const file = files[0];
-            var imageTag = "https://portfolio-staffan.s3.amazonaws.com/" + file.name;
+            var imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
             console.log(imageTag);
             $("#image").val(imageTag);
             /*Materialize.updateTextFields();*/

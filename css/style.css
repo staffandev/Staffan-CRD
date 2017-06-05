@@ -14,14 +14,7 @@
     padding-bottom: 0;
 }
 
-.carousel carousel-slider {
-    height: 337px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 890px !important;
-    display: block;
-}
+
 
 #port-slide {
     width: 100%;
@@ -32,11 +25,6 @@
     transform: translate(-50%, -50%);
 }
 
-.port-centerfix {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 
 .test {
     height: 10em;
@@ -97,14 +85,6 @@ polyline {
 
 orange {
     color: rgba(239, 195, 109, 0.9);
-}
-
-.carousel .indicators .indicator-item.active {
-    background-color: #475061;
-}
-
-.carousel .indicators .indicator-item {
-    background-color: rgb(218, 218, 218);
 }
 
 #h-margin {
