@@ -150,6 +150,11 @@
             const files = document.getElementById('file-input').files;
             const file = files[0];
             var imageTag = "";
+            if (file == null) {
+                return alert('No file selected.');
+            }
+            getSignedRequest(file);
+
             var s3 = new AWS.S3();
             var params = {
                 Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
@@ -162,25 +167,9 @@
                 imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
                 //error return a object with status code 404
             }).send();
-            /*           $.ajax({
-                           url: imageTag,
-                           type: "HEAD"
-                       }).then(
-                           function() {
-                               console.log("File is present");
-                           },
-                           function() {
-                               imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
-                               console.log("File not present");
-                           }
-                       );*/
             console.log(imageTag);
             $("#image").val(imageTag);
             /*Materialize.updateTextFields();*/
-            if (file == null) {
-                return alert('No file selected.');
-            }
-            getSignedRequest(file);
         }
         /*
          Bind listeners when the page loads.
