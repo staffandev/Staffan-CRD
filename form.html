@@ -140,29 +140,69 @@
                         var promise = uploadFile(file, response.signedRequest, response.url);
                         promise.done(function(data) {
                             var imageTag = "";
-                            var s3 = new AWS.S3();
-                            var params = {
-                                Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
-                                Key: file.name
-                            };
-                            s3.getObject(params).on('success', function(response) {
-                                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
-                                console.log("Key was", response.request.params.Key);
-                            }).on('error', function(error) {
-                                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
-                                //error return a object with status code 404
-                            }).send();
-                            console.log(imageTag);
-                            $("#image").val(imageTag);
+                            var appId = '1954161311525593';
+                            var roleArn = 'JSAccesFB';
+                            var bucketName = 'portfolio-staffan';
+                            AWS.config.region = 'eu-central-1';
+                            var fbUserId;
                         });
-                    } else {
-                        alert('Could not get signed URL.');
-                    }
-                }
-            };
-            xhr.send();
+                        var s3 = new AWS.S3();
+                        var objKey = 'facebook-' + fbUserId + '/' + file.name;
+                        var params = {
+                            Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
+                            Key: objKey,
+                            ContentType: file.type,
+                            Body: file,
+                            ACL: 'public-read'
+                        };
+                        //Object key will be facebook-USERID#/FILE_NAME
 
+                        s3.getObject(params).on('success', function(response) {
+                            imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
+                            console.log("Key was", response.request.params.Key);
+                        }).on('error', function(error) {
+                            imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
+                            //error return a object with status code 404
+                        }).send();
+
+                        window.fbAsyncInit = function() {
+                            FB.init({
+                                appId: appId
+                            });
+
+                            FB.login(function(response) {
+                                bucket.config.credentials = new AWS.WebIdentityCredentials({
+                                    ProviderId: 'graph.facebook.com',
+                                    RoleArn: roleArn,
+                                    WebIdentityToken: response.authResponse.accessToken
+                                });
+                                fbUserId = response.authResponse.userID;
+                                button.style.display = 'block';
+                            });
+                        };
+
+                        // Load the Facebook SDK asynchronously
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) {
+                                return;
+                            }
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/en_US/all.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+
+                        console.log(imageTag);
+                        $("#image").val(imageTag);
+                    };
+                } else {
+                    alert('Could not get signed URL.');
+                }
+            }
+            xhr.send();
         }
+
         /*
          Function called when file input updated. If there is a file selected, then
          start upload procedure by asking for a signed request from the app.
