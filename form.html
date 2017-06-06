@@ -131,14 +131,12 @@
           request.
         */
         function getSignedRequest(file) {
-            var deferred = $.Deferred();
             const xhr = new XMLHttpRequest();
             xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         const response = JSON.parse(xhr.responseText);
-                        deferred.resolve(xhr.response);
                         console.log(response);
                         uploadFile(file, response.signedRequest, response.url);
                     } else {
@@ -148,7 +146,6 @@
                 }
             };
             xhr.send();
-            return deferred.promise();
 
         }
         /*
@@ -164,7 +161,7 @@
             }
             getSignedRequest(file);
 
-            var promise = (uploadFile(), uploadFile());
+            var promise = uploadFile();
 
             // function will be called when both getData and getLocation resolve
             promise.done(function(data, data) {
