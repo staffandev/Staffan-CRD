@@ -144,7 +144,7 @@
                             var roleArn = 'JSAccesFB';
                             var bucketName = 'portfolio-staffan';
                             AWS.config.region = 'eu-central-1';
-                            var fbUserId;
+                            var fbUserId = '1338297477';
 
                             var s3 = new AWS.S3();
                             var objKey = 'facebook-' + fbUserId + '/' + file.name;
@@ -167,7 +167,7 @@
                                         RoleArn: roleArn,
                                         WebIdentityToken: response.authResponse.accessToken
                                     });
-                                    fbUserId = response.authResponse.userID;
+                                    /* fbUserId = response.authResponse.userID;*/
                                     button.style.display = 'block';
                                 });
                             };
