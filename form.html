@@ -108,11 +108,12 @@
             var deferred = $.Deferred();
             console.log(signedRequest);
             const xhr = new XMLHttpRequest();
-            xhr.open('PUT', signedRequest, true);
+            xhr.open('PUT', signedRequest);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        deferred.resolve(xhr.response);
+                        deferred.resolve();
+                        console.log("xhr: " + xhr.response)
                         document.getElementById('preview').src = url;
                         document.getElementById('avatar-url').value = url;
                     } else {
