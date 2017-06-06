@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Staffan Form</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -146,19 +149,31 @@
         function initUpload() {
             const files = document.getElementById('file-input').files;
             const file = files[0];
-            var imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
-            $.ajax({
-                url: imageTag,
-                type: "HEAD"
-            }).then(
-                function() {
-                    console.log("File is present");
-                },
-                function() {
-                    imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
-                    console.log("File not present");
-                }
-            );
+            var imageTag = "";
+            var s3 = new AWS.S3();
+            var params = {
+                Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
+                Key: file.name
+            };
+            s3.getObject(params).on('success', function(response) {
+                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
+                console.log("Key was", response.request.params.Key);
+            }).on('error', function(error) {
+                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
+                //error return a object with status code 404
+            }).send();
+            /*           $.ajax({
+                           url: imageTag,
+                           type: "HEAD"
+                       }).then(
+                           function() {
+                               console.log("File is present");
+                           },
+                           function() {
+                               imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
+                               console.log("File not present");
+                           }
+                       );*/
             console.log(imageTag);
             $("#image").val(imageTag);
             /*Materialize.updateTextFields();*/
