@@ -108,7 +108,7 @@
             var deferred = $.Deferred();
             console.log(signedRequest);
             const xhr = new XMLHttpRequest();
-            xhr.open('PUT', signedRequest);
+            xhr.open('PUT', signedRequest, true);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
