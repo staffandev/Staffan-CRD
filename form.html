@@ -104,26 +104,36 @@
         /*
                       Function to carry out the actual PUT request to S3 using the signed request from the app.
                     */
-        function uploadFile(file, signedRequest, url) {
-            var deferred = $.Deferred();
+        function uploadFile(file, signedRequest, url) {;
             console.log(signedRequest);
             const xhr = new XMLHttpRequest();
             xhr.open('PUT', signedRequest);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        deferred.resolve();
-                        console.log("xhr: " + xhr.response)
                         document.getElementById('preview').src = url;
                         document.getElementById('avatar-url').value = url;
                     } else {
-                        deferred.reject("HTTP error: " + xhr.status);
                         alert('Could not upload file.');
                     }
                 }
             };
             xhr.send(file);
-            return deferred.promise();
+            var imageTag = "";
+            var s3 = new AWS.S3();
+            var params = {
+                Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
+                Key: file.name
+            };
+            s3.getObject(params).on('success', function(response) {
+                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
+                console.log("Key was", response.request.params.Key);
+            }).on('error', function(error) {
+                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
+                //error return a object with status code 404
+            }).send();
+            console.log(imageTag);
+            $("#image").val(imageTag);
         }
         /*
           Function to get the temporary signed request from the app.
@@ -155,33 +165,10 @@
         function initUpload() {
             const files = document.getElementById('file-input').files;
             const file = files[0];
-            var imageTag = "";
             if (file == null) {
                 return alert('No file selected.');
             }
             getSignedRequest(file);
-
-            var promise = uploadFile();
-
-            // function will be called when both getData and getLocation resolve
-            promise.done(function(data, data) {
-                alert("We got data: ");
-
-                var s3 = new AWS.S3();
-                var params = {
-                    Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
-                    Key: file.name
-                };
-                s3.getObject(params).on('success', function(response) {
-                    imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
-                    console.log("Key was", response.request.params.Key);
-                }).on('error', function(error) {
-                    imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
-                    //error return a object with status code 404
-                }).send();
-            });
-            console.log(imageTag);
-            $("#image").val(imageTag);
             /*Materialize.updateTextFields();*/
         }
         /*
