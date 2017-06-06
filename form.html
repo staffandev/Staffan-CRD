@@ -105,20 +105,24 @@
                       Function to carry out the actual PUT request to S3 using the signed request from the app.
                     */
         function uploadFile(file, signedRequest, url) {
+            var deferred = $.Deferred();
             console.log(signedRequest);
             const xhr = new XMLHttpRequest();
             xhr.open('PUT', signedRequest);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
+                        deferred.resolve(xhr.response);
                         document.getElementById('preview').src = url;
                         document.getElementById('avatar-url').value = url;
                     } else {
+                        deferred.reject("HTTP error: " + xhr.status);
                         alert('Could not upload file.');
                     }
                 }
             };
             xhr.send(file);
+            return deferred.promise();
         }
         /*
           Function to get the temporary signed request from the app.
@@ -155,18 +159,25 @@
             }
             getSignedRequest(file);
 
-            var s3 = new AWS.S3();
-            var params = {
-                Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
-                Key: file.name
-            };
-            s3.getObject(params).on('success', function(response) {
-                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
-                console.log("Key was", response.request.params.Key);
-            }).on('error', function(error) {
-                imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
-                //error return a object with status code 404
-            }).send();
+            var promise = uploadFile();
+
+            // function will be called when both getData and getLocation resolve
+            promise.done(function(data) {
+                alert("We got data: " + dataResult);
+
+                var s3 = new AWS.S3();
+                var params = {
+                    Bucket: 'https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/',
+                    Key: file.name
+                };
+                s3.getObject(params).on('success', function(response) {
+                    imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
+                    console.log("Key was", response.request.params.Key);
+                }).on('error', function(error) {
+                    imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
+                    //error return a object with status code 404
+                }).send();
+            });
             console.log(imageTag);
             $("#image").val(imageTag);
             /*Materialize.updateTextFields();*/
