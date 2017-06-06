@@ -105,27 +105,24 @@
                       Function to carry out the actual PUT request to S3 using the signed request from the app.
                     */
         function uploadFile(file, signedRequest, url) {
-            var promise = getSignedRequest();
-            promise.done(function(data) {
-                var deferred = $.Deferred();
-                console.log(signedRequest);
-                const xhr = new XMLHttpRequest();
-                xhr.open('PUT', signedRequest, true);
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            deferred.resolve(xhr.response);
-                            document.getElementById('preview').src = url;
-                            document.getElementById('avatar-url').value = url;
-                        } else {
-                            deferred.reject("HTTP error: " + xhr.status);
-                            alert('Could not upload file.');
-                        }
+            var deferred = $.Deferred();
+            console.log(signedRequest);
+            const xhr = new XMLHttpRequest();
+            xhr.open('PUT', signedRequest, true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        deferred.resolve(xhr.response);
+                        document.getElementById('preview').src = url;
+                        document.getElementById('avatar-url').value = url;
+                    } else {
+                        deferred.reject("HTTP error: " + xhr.status);
+                        alert('Could not upload file.');
                     }
-                };
-                xhr.send(file);
-                return deferred.promise();
-            });
+                }
+            };
+            xhr.send(file);
+            return deferred.promise();
         }
         /*
           Function to get the temporary signed request from the app.
@@ -166,11 +163,11 @@
             }
             getSignedRequest(file);
 
-            var promise = uploadFile();
+            var promise = (uploadFile(), uploadFile());
 
             // function will be called when both getData and getLocation resolve
-            promise.done(function(data) {
-                alert("We got data: " + dataResult);
+            promise.done(function(data, data) {
+                alert("We got data: ");
 
                 var s3 = new AWS.S3();
                 var params = {
