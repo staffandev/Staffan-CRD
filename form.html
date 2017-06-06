@@ -148,11 +148,16 @@
                                 function() {
                                     console.log("File is present");
                                     imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/cropped-to-square/" + file.name;
+                                    console.log(imageTag);
+                                    $("#image").val(imageTag);
                                 },
                                 function() {
                                     imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
                                     console.log("File not present");
+                                    console.log(imageTag);
+                                    $("#image").val(imageTag);
                                 }
+
                             );
 
                             /* var s3 = new AWS.S3();
@@ -167,9 +172,6 @@
                                  imageTag = "https://portfolio-staffan.s3.amazonaws.com/resized/medium/medium-" + file.name;
                                  //error return a object with status code 404
                              }).send();*/
-
-                            console.log(imageTag);
-                            $("#image").val(imageTag);
                         });
                     } else {
                         alert('Could not get signed URL.');
