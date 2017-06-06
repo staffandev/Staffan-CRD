@@ -112,7 +112,10 @@
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        deferred.resolve(xhr.responseText);
+                        setTimeout(function() {
+                            deffered.resolve();
+                        }, 3000); // Wait 3s then resolve.
+                        /*   deferred.resolve(xhr.responseText);*/
                         document.getElementById('preview').src = url;
                         document.getElementById('avatar-url').value = url;
                     } else {
