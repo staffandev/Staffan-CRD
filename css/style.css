@@ -14,8 +14,6 @@
     padding-bottom: 0;
 }
 
-
-
 #port-slide {
     width: 100%;
     position: relative;
@@ -24,7 +22,6 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
 }
-
 
 .test {
     height: 10em;
@@ -293,7 +290,8 @@ p {
     width: 100%;
 }
 
-@media only screen and (max-width: 321px) {
+
+/*@media only screen and (max-width: 321px) {
     #h-margin {
         max-width: 300px;
         margin-top: 480px;
@@ -373,8 +371,10 @@ p {
 
 @media only screen and (max-width: 1543px) {}
 
-@media only screen and (max-width: 992px) {
-    /*   .parallax-container .section {
+@media only screen and (max-width: 992px) {*/
+
+
+/*   .parallax-container .section {
             position: absolute;
             top: 40%;
         }
@@ -392,10 +392,14 @@ p {
         #h1-margin {
             display: none;
         }*/
-}
 
-@media only screen and (max-width: 760px) {
-    /*      #index-banner .section {
+
+/*}
+
+@media only screen and (max-width: 760px) {*/
+
+
+/*      #index-banner .section {
             top: 0;
         }
         #index-banner .section {
@@ -412,4 +416,6 @@ p {
         #h1-margin {
             display: none;
         }*/
-}
+
+
+/*}*/
