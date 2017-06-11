@@ -1,21 +1,81 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var data = "print";
+    var data = "other";
     document.getElementById("webb").addEventListener("click", function() {
         data = "web"
+        removeSliderElements();
+        slide = 1;
         searchProjects(data);
     });
     document.getElementById("print").addEventListener("click", function() {
-        data = "print"
+        removeSliderElements();
+        data = "print";
+        removeSliderElements();
         searchProjects(data);
+        slide = 1;
     });
     document.getElementById("backend").addEventListener("click", function() {
-        data = "backend"
+        removeSliderElements();
+        data = "backend";
+        removeSliderElements();
         searchProjects(data);
+        slide = 1;
     });
     document.getElementById("other").addEventListener("click", function() {
-        data = "other"
+        removeSliderElements();
+        data = "other";
+        removeSliderElements();
         searchProjects(data);
+        slide = 1;
     });
+
+    function createSlick() {
+        var slider = $("#slide.responsive").not('.slick-initialized');
+        /*   var slider = $("#slide.responsive");*/
+        slider.slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: false,
+                        arrows: false,
+                        rows: 3
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+    }
+
+    function removeSliderElements() {
+        $('.slider-port').slick('removeSlide', null, null, true);
+        $('.slider-port').slick('unslick');
+    }
 
     searchProjects(data);
 
@@ -28,42 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var dLoadUrl = "";
     var slide = 1;
 
-    $('.responsive').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ]
-    });
-
-
     function searchProjects(filter) {
         var url = "https://staffan-portfolio.herokuapp.com/" + filter;
         console.log(url);
@@ -75,6 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(data);
                 projects = data;
                 getProjects();
+                createSlick();
+
             },
             error: function(a, b, c) {
                 console.log(a);
@@ -85,50 +111,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getProjects() {
-        slide++
-        /*document.getElementById("books").innerHTML = "";*/
-        if ($('#slide2').length) // use this if you are using id to check
-        {
-            document.getElementById("slide2").innerHTML = "";
-        } else if ($('#slide3').length) {
-            document.getElementById("slide3").innerHTML = "";
-        } else if ($('#slide4').length) {
-            document.getElementById("slide4").innerHTML = "";
-        }
-        document.getElementById("slide1").innerHTML = "";
 
         projects.map(function(arrayItem, i) {
-            console.log(arrayItem);
             id = arrayItem._id;
             title = arrayItem.title;
             subTitle = arrayItem.subtitle;
-            desc = arrayItem.desc;
             imgUrl = arrayItem.imageurl;
-            if (i <= 2) {
-                /*  $("#slide2").remove();
-                  $("#slide3").remove();
-                  $("#slide4").remove();
-                  $("ul.indicator-item:nth-child(2)").remove();
-                  $("ul.indicator-item:nth-child(3)").remove();
-                  $("ul.indicator-item:nth-child(4)").remove();*/
-                var slide = "slide1";
+            desc = arrayItem.desc;
+            if (i <= 9) {
+                console.log(id, title, subTitle, desc, imgUrl, slide);
                 showProject(id, title, subTitle, desc, imgUrl, slide);
-
-            } else if (i >= 2 && i <= 5) {
-                /*   $("#slide3").remove();
-                   $("#slide4").remove();
-                   $("ul.indicator-item:nth-child(3)").remove();
-                   $("ul.indicator-item:nth-child(4)").remove();*/
-                var slide = "slide2";
-                showProject(id, title, subTitle, desc, imgUrl, slide);
-            } else if (i >= 5 && i <= 8) {
-                /*   $("#slide4").remove();
-                   $("ul.indicator-item:nth-child(4)").remove();*/
-                var slide = "slide3";
-                showProject(id, title, subTitle, desc, imgUrl, slide);
-            } else if (i >= 8 && i <= 11) {
-                var slide = "slide4";
-                showProject(id, title, subTitle, desc, imgUrl, slide);
+                slide++;
             } else {
                 var moreProjects = {
                     id: id,
@@ -137,35 +130,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     desc: desc,
                     imgUrl: imgUrl
                 }
-
                 hiddenProjects.push(moreProjects);
             }
-
-            /* return (i !== 2);*/
             return
         });
-        /*        projects.each(function(index, arrayItem) {
-                    console.log(arrayItem);
-                    id = arrayItem._id;
-                    title = arrayItem.title;
-                    subTitle = arrayItem.subtitle;
-                    desc = arrayItem.desc;
-                    imgUrl = arrayItem.imageurl;
-                    showProject(id, title, subTitle, desc, imgUrl);
-                    return (index !== 2);
-                })*/
     }
 
     function showProject(id, title, subTitle, desc, imgUrl, slide) {
-
-
         //Här visas resultatet
 
-        var target = document.getElementById(slide);
+        var target = document.getElementById("slide");
         if (target !== null) {
             // Ny div skapas
             var product = document.createElement("div");
             product.setAttribute("class", "styleaMig");
+            product.setAttribute("id", "slide" + slide);
 
             // HTML sträng skapas
             var htmlToAdd = "<div class='col s4'>";

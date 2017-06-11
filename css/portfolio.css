@@ -12,6 +12,7 @@
     backface-visibility: hidden;
 }
 
+
 .middle {
     transition: .5s ease;
     opacity: 0;
@@ -60,7 +61,7 @@
     max-width: 200px;
 }
 
-.carousel {
+/*.carousel {
     position: relative;
     width: 890px !important;
     margin: 0 auto;
@@ -75,8 +76,6 @@
 .carousel carousel-slider {
     height: 337px;
     position: relative;
-    /*  top: 0;
-    left: 0;*/
     width: 890px !important;
     display: block;
     left: -10px;
@@ -86,8 +85,7 @@
     display: none;
     width: 200px;
     height: 200px;
-    position: /* top: 0; */
-    /* left: 0; */
+   
 }
 
 .carousel .indicators .indicator-item.active {
@@ -96,7 +94,7 @@
 
 .carousel .indicators .indicator-item {
     background-color: rgb(218, 218, 218);
-}
+}*/
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
 body {
@@ -140,11 +138,11 @@ body {
     .card {
         height: 220px;
     }
-    .carousel {
-        /*height: 1024px !important;*/
+ /*   .carousel {
+        
         max-width: 238px;
         min-height: 900px;
-    }
+    }*/
     /* .styleaMig {
         float: left;
     }*/
@@ -168,7 +166,7 @@ body {
     .card {
         height: 220px;
     }
-    .carousel {
+ /*   .carousel {
         height: 350px;
-    }
+    }*/
 }

@@ -30,12 +30,12 @@ function activateBars() {
     bar = new ProgressBar.Circle(container1, {
         color: '#FFEA82',
         trailColor: '#eee',
-        trailWidth: 1,
+        trailWidth: 5,
         duration: 1400,
         easing: 'bounce',
-        strokeWidth: 6,
+        strokeWidth: 7,
         from: { color: '#FFEA82', a: 0 },
-        to: { color: '#ED6A5A', a: 1 },
+        to: { color: '#263d62', a: 1 },
         // Set default step function for all animate calls
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -43,7 +43,7 @@ function activateBars() {
             if (value === 0) {
                 circle.setText('');
             } else {
-                circle.setText(value);
+                circle.setText(value + "%");
             }
         }
     });
@@ -54,12 +54,12 @@ function activateBars() {
     bar2 = new ProgressBar.Circle(container2, {
         color: '#FFEA82',
         trailColor: '#eee',
-        trailWidth: 1,
+        trailWidth: 5,
         duration: 1400,
         easing: 'bounce',
-        strokeWidth: 6,
+        strokeWidth: 7,
         from: { color: '#FFEA82', a: 0 },
-        to: { color: '#ED6A5A', a: 1 },
+        to: { color: 'rgb(140, 50, 16)', a: 1 },
         // Set default step function for all animate calls
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -67,7 +67,7 @@ function activateBars() {
             if (value === 0) {
                 circle.setText('');
             } else {
-                circle.setText(value);
+                circle.setText(value + "%");
             }
         }
     });
@@ -78,12 +78,12 @@ function activateBars() {
     bar3 = new ProgressBar.Circle(container3, {
         color: '#FFEA82',
         trailColor: '#eee',
-        trailWidth: 1,
+        trailWidth: 5,
         duration: 1400,
         easing: 'bounce',
-        strokeWidth: 6,
+        strokeWidth: 7,
         from: { color: '#FFEA82', a: 0 },
-        to: { color: '#ED6A5A', a: 1 },
+        to: { color: 'rgb(175, 112, 89)', a: 1 },
         // Set default step function for all animate calls
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -91,7 +91,7 @@ function activateBars() {
             if (value === 0) {
                 circle.setText('');
             } else {
-                circle.setText(value);
+                circle.setText(value + "%");
             }
         }
     });
@@ -103,12 +103,12 @@ function activateBars() {
     bar4 = new ProgressBar.Circle(container4, {
         color: '#FFEA82',
         trailColor: '#eee',
-        trailWidth: 1,
+        trailWidth: 5,
         duration: 1400,
         easing: 'bounce',
-        strokeWidth: 6,
+        strokeWidth: 7,
         from: { color: '#FFEA82', a: 0 },
-        to: { color: '#ED6A5A', a: 1 },
+        to: { color: 'rgb(214, 222, 155)', a: 1 },
         // Set default step function for all animate calls
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -116,7 +116,7 @@ function activateBars() {
             if (value === 0) {
                 circle.setText('');
             } else {
-                circle.setText(value);
+                circle.setText(value + "%");
             }
         }
     });

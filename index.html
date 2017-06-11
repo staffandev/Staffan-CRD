@@ -12,8 +12,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/portfolio.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
+    <link href="css/portfolio2.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/slick.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/slick-theme.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
@@ -66,6 +67,10 @@
                     <div class="svg-cont" id="animation">
 
                     </div>
+                    <div class="downArrow bounce">
+                        <img id="arrDown" class="svg" width="40" height="40" alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4="
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -84,43 +89,22 @@
                 <div class="row">
                     <div class="col s12">
 
-                        <div class="row">
-                            <div class="col s12">
-                                <ul class="tabs">
-                                    <li class="tab col s3" id="print"><a class="active" href="#test2">Print</a></li>
-                                    <li class="tab col s3" id="webb"><a href="#test1">Webb</a></li>
-                                    <li class="tab col s3" id="backend"><a href="#test3">Backend</a></li>
-                                    <li class="tab col s3" id="other"><a href="#test4">Övrigt</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <ul class="tabs">
+                            <li class="tab col s3" id="print"><a class="active" href="#test2">Print</a></li>
+                            <li class="tab col s3" id="webb"><a href="#test1">Webb</a></li>
+                            <li class="tab col s3" id="backend"><a href="#test3">Backend</a></li>
+                            <li class="tab col s3" id="other"><a href="#test4">Övrigt</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
 
-                        <div class="carousel carousel-slider center" data-indicators="true">
-                            <a class="carousel-item" id="slide1" href="#one!">
-                                <p>
-                                    <div id="books"></div>
-                                </p>
-                            </a>
-                            <a class="carousel-item" id="slide2" href="#two!">
-                                <p>
-
-                                </p>
-                            </a>
-                            <a class="carousel-item" id="slide3" href="#three!">
-                                <p>
-
-                                </p>
-                            </a>
-                            <a class="carousel-item" id="slide4" href="#four!">
-                                <p>
-
-                                </p>
-                            </a>
-
+                    <div class="col s12">
+                        <div class="slider-port responsive center" id="slide">
                         </div>
                     </div>
-                    <div id="hiddenProjects"></div>
                 </div>
+                <div id="hiddenProjects"></div>
             </div>
         </div>
     </div>
@@ -169,9 +153,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
     </div>
 
     <div class="parallax-container valign-wrapper">
@@ -250,14 +234,14 @@
                 </div>
             </div>
         </div>
-        <div class="parallax"><img src="images/back3.jpg"></div>
+        <div class="parallax"><img src="images/kran.png"></div>
     </div>
     <div id="resume" class="section scrollspy">
         <div class="container">
             <div class="row" id="skills">
                 <div class="col s12 m6 l3">
                     <div id="container1" class="bar">
-                        <h5>JS / Node </h5>
+                        <h5>JS/Node </h5>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
@@ -286,16 +270,16 @@
                         <p class="grey-text text-lighten-4">Har arbetat som konsult och webbutvecklare sen "jesus gick i kortbyxor". Älskar fullstack JavaScript med node och ramverk men har också arbetat med Sharepointutveckling i C#. Före detta Flash expert (det var så det började). Har
                             alltid haft intresse och öga för det grafiska och har utbildat i allt från Grafisk Kommunikation till backendprogrammering.
                         </p>
-                        <div class="col l6 s4">
+
+                        <div class="col l6 xs12">
                             <a class="waves-effect waves-light btn" href="files/staffan-cv.pdf"><i class="material-icons right">class</i>Ladda hem CV</a>
                         </div>
-                        <div class="col l6 s4">
+                        <div class="col l6 xs12">
                             <a class="waves-effect waves-light btn" href="files/portfolio_2011.pdf"><i class="material-icons right">work</i>Portfolio 2011</a>
                         </div>
                     </div>
-                    <div class="col l3 s12">
 
-                    </div>
+                    <div class="col l3 s12"></div>
                     <div class="col l3 s12">
                         <h5 class="white-text">Socialt</h5>
                         <ul>
@@ -310,6 +294,7 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
 
             <div class="footer-copyright">
@@ -321,17 +306,52 @@
     </div>
 
     <!--  Scripts-->
+
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/portfolio.js"></script>
+    <script src="js/portfolio3.js"></script>
     <script src="https://cdn.jsdelivr.net/walkway/0.0.7/walkway.min.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/progressbar.js"></script>
     <script src="js/bars.js"></script>
+    <script src="js/slick.js"></script>
 
     <script>
         $(document).ready(function() {
+            jQuery('img.svg').each(function() {
+                var $img = jQuery(this);
+                var imgID = $img.attr('id');
+                var imgClass = $img.attr('class');
+                var imgURL = $img.attr('src');
+
+                jQuery.get(imgURL, function(data) {
+                    // Get the SVG tag, ignore the rest
+                    var $svg = jQuery(data).find('svg');
+
+                    // Add replaced image's ID to the new SVG
+                    if (typeof imgID !== 'undefined') {
+                        $svg = $svg.attr('id', imgID);
+                    }
+                    // Add replaced image's classes to the new SVG
+                    if (typeof imgClass !== 'undefined') {
+                        $svg = $svg.attr('class', imgClass + ' replaced-svg');
+                    }
+
+                    // Remove any invalid XML tags as per http://validator.w3.org
+                    $svg = $svg.removeAttr('xmlns:a');
+
+                    // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+                    if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                        $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+                    }
+
+                    // Replace image with new SVG
+                    $img.replaceWith($svg);
+
+                }, 'xml');
+
+            });
 
             var from, to, email, phone, subject, text;
             $("#send-email").click(function() {
