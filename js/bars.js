@@ -123,6 +123,4 @@ function activateBars() {
     bar4.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
     bar4.text.style.fontSize = '2rem';
     bar4.animate(0.7); // Number from 0.0 to 1.0a
-
-
 }

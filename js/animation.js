@@ -5,9 +5,9 @@ function animation(x) {
     $("#animation").append(anim);
 
     if (x === 0 || x === 1) {
-        $("path").css("cssText", "stroke: #aba3a3 !important;");
+        $("#ps4 path").css("cssText", "stroke: #aba3a3 !important;");
     } else if (x === 3) {
-        $("path").css("cssText", "stroke: #805f3e !important;");
+        $("#ps4 path").css("cssText", "stroke: #805f3e !important;");
         $("#h-margin").hide();
         $("#h2-margin").hide();
     }
